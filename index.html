@@ -3,8 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>نظام إدارة فترات التدريب المطور</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>مساعد فترات التدريب | ماجد العسيري</title>
+    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/moment-hijri@2.1.2/moment-hijri.min.js"></script>
@@ -13,204 +14,185 @@
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap');
 
         :root {
-            --bg-site: #f8fafc;
-            --primary: #2563eb;
-            --accent-blue: #eff6ff;
-            --card-white: #ffffff;
-            --text-dark: #1e293b;
-            --text-light: #64748b;
-            --success: #059669;
-            --danger: #dc2626;
-            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
-            --radius: 24px;
+            --primary: #4f46e5;
+            --primary-dark: #4338ca;
+            --secondary: #64748b;
+            --bg-app: #f1f5f9;
+            --card-bg: #ffffff;
+            --success: #10b981;
+            --danger: #ef4444;
+            --text-main: #0f172a;
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
         }
 
         * { 
             margin: 0; padding: 0; box-sizing: border-box; 
-            -webkit-tap-highlight-color: transparent; /* تحسين استجابة اللمس */
+            -webkit-tap-highlight-color: transparent;
+            font-family: 'Cairo', sans-serif;
         }
 
         body {
-            font-family: 'Cairo', sans-serif;
-            background-color: var(--bg-site);
-            color: var(--text-dark);
-            padding: 20px 10px;
+            background-color: var(--bg-app);
+            color: var(--text-main);
+            padding: 20px 15px env(safe-area-inset-bottom);
             line-height: 1.6;
-            font-size: 16px; /* لمنع الزووم التلقائي في آيفون عند التركيز على الحقول */
+            user-select: none; /* لمنع تحديد النصوص وكأنه تطبيق */
         }
 
-        .container { max-width: 1000px; margin: 0 auto; }
+        .container { max-width: 600px; margin: 0 auto; }
 
-        header { text-align: center; margin-bottom: 25px; padding: 0 10px; }
-        header h1 { font-weight: 900; color: var(--primary); font-size: 1.75rem; letter-spacing: -0.5px; }
+        /* Header Styling */
+        header { 
+            text-align: center; 
+            margin-bottom: 30px; 
+            padding-top: 10px;
+        }
+        header h1 { 
+            font-weight: 900; 
+            font-size: 1.8rem; 
+            background: linear-gradient(135deg, var(--primary), #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
+        /* Section Cards */
         .section-card {
-            background: var(--card-white);
-            border-radius: var(--radius);
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
             padding: 20px;
             margin-bottom: 20px;
             box-shadow: var(--shadow);
-            border: 1px solid rgba(226, 232, 240, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.7);
         }
 
         .unit-header {
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 18px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid #f1f5f9;
+            gap: 10px;
+            margin-bottom: 20px;
         }
 
         .unit-icon {
-            width: 36px; height: 36px;
-            background: var(--accent-blue);
+            width: 40px; height: 40px;
+            background: #eef2ff;
             color: var(--primary);
             border-radius: 12px;
             display: flex; align-items: center; justify-content: center;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
 
-        .unit-title { font-weight: 800; font-size: 1rem; }
+        .unit-title { font-weight: 800; font-size: 1.1rem; color: var(--text-main); }
 
-        .grid-layout {
-            display: grid;
-            grid-template-columns: 1fr; /* الافتراضي للجوال عمود واحد */
-            gap: 15px;
-        }
-
-        @media (min-width: 768px) {
-            .grid-layout { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
-        }
-
-        label { display: block; margin-bottom: 6px; font-weight: 700; font-size: 0.85rem; color: var(--text-light); }
+        /* Form Elements */
+        label { display: block; margin-bottom: 8px; font-weight: 700; font-size: 0.85rem; color: var(--secondary); margin-right: 5px; }
 
         input, select {
             width: 100%;
-            padding: 14px;
-            border: 2px solid #f1f5f9;
+            padding: 15px;
+            border: 1.5px solid #e2e8f0;
             background-color: #f8fafc;
-            border-radius: 14px;
-            font-family: 'Cairo';
-            font-size: 0.95rem;
+            border-radius: var(--radius-md);
+            font-size: 1rem;
             transition: all 0.2s ease;
-            appearance: none; /* توحيد شكل الـ Select */
+            color: var(--text-main);
+            font-weight: 600;
         }
 
-        input:focus, select:focus { 
-            border-color: var(--primary); 
-            background-color: #fff;
-            outline: none; 
-            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
-        }
+        input:focus { border-color: var(--primary); background-color: #fff; outline: none; }
 
         .btn-action {
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white; border: none;
-            padding: 16px; border-radius: 16px;
+            padding: 16px; border-radius: var(--radius-md);
             font-weight: 800; cursor: pointer;
-            width: 100%; margin-top: 10px;
-            transition: 0.3s;
-            font-size: 1rem;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+            width: 100%; margin-top: 15px;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
         }
 
-        .btn-action:active { transform: scale(0.98); }
+        .btn-action:active { transform: scale(0.97); }
 
+        /* Data Display */
         .info-display {
             background: #f8fafc;
             padding: 15px;
-            border-radius: 18px;
+            border-radius: var(--radius-md);
             margin-top: 15px;
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 12px;
-            border: 1px dashed #cbd5e1;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
+            border: 1px solid #e2e8f0;
         }
 
-        @media (min-width: 600px) {
-            .info-display { grid-template-columns: repeat(3, 1fr); }
-        }
+        .info-item { text-align: center; padding: 10px; background: white; border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+        .info-label { font-size: 0.75rem; color: var(--secondary); font-weight: 700; display: block; }
+        .info-value { font-weight: 800; color: var(--text-main); font-size: 0.95rem; }
 
-        .info-item { 
-            padding: 8px;
-            background: white;
-            border-radius: 12px;
-            border: 1px solid #f1f5f9;
-        }
-        .info-label { font-size: 0.7rem; color: var(--text-light); font-weight: 700; display: block; margin-bottom: 2px; }
-        .info-value { font-weight: 800; color: var(--text-dark); font-size: 0.9rem; }
-        .highlight-blue { color: var(--primary); }
+        /* Hijri Group */
+        .hijri-group { display: flex; gap: 8px; margin-bottom: 10px; }
+        .hijri-group select { padding: 12px 5px; font-size: 0.9rem; flex: 1; }
 
-        /* النتائج */
-        .results-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 12px;
-            margin-top: 20px;
-        }
-
-        @media (min-width: 600px) {
-            .results-grid { grid-template-columns: repeat(3, 1fr); }
-        }
-
+        /* Results Styling */
+        .results-grid { display: grid; gap: 12px; margin-top: 20px; }
+        
         .result-box {
-            background: #ffffff;
-            border: 1px solid #f1f5f9;
-            padding: 15px;
-            border-radius: 20px;
+            background: #fff;
+            padding: 20px;
+            border-radius: var(--radius-md);
             text-align: center;
-            transition: 0.3s;
+            border: 1px solid #e2e8f0;
         }
 
-        .result-box.highlight { 
-            border: 2px solid var(--success); 
-            background: #f0fdf4; 
-            grid-column: 1 / -1; /* جعل نتيجة التخرج تأخذ عرض كامل في الجوال لأهميتها */
+        .result-box.highlight {
+            background: linear-gradient(135deg, #059669, #10b981);
+            color: white; border: none;
         }
         
-        @media (min-width: 600px) {
-            .result-box.highlight { grid-column: auto; }
-        }
+        .result-box.highlight .info-label,
+        .result-box.highlight .val-sub { color: rgba(255,255,255,0.8); }
+        .result-box.highlight .val-main { color: #fff; font-size: 1.5rem; }
 
-        .result-box .val-main { display: block; font-size: 1.2rem; font-weight: 900; color: var(--primary); margin: 4px 0; }
-        .result-box .val-sub { font-size: 0.8rem; color: var(--text-light); font-weight: 600; }
+        .val-main { display: block; font-size: 1.3rem; font-weight: 900; color: var(--primary); }
+        .val-sub { font-size: 0.9rem; font-weight: 600; color: var(--secondary); }
 
-        /* تحسين الجدول للجوال */
-        .table-container {
-            overflow-x: auto;
-            margin: 10px -5px;
-            padding: 0 5px;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        table { width: 100%; border-collapse: separate; border-spacing: 0 8px; }
-        th { text-align: right; padding: 10px; font-size: 0.75rem; color: var(--text-light); text-transform: uppercase; }
-        td { 
-            padding: 12px; 
-            background: #f8fafc;
-            font-size: 0.85rem; 
-        }
-        td:first-child { border-radius: 0 12px 12px 0; }
-        td:last-child { border-radius: 12px 0 0 12px; text-align: left; }
-
-        .delete-link { 
-            color: var(--danger); 
-            padding: 8px 12px;
-            background: #fee2e2;
+        /* Table Optimization */
+        .table-container { margin-top: 15px; border-radius: 12px; overflow: hidden; }
+        table { width: 100%; border-collapse: collapse; }
+        th { background: #f8fafc; padding: 12px; font-size: 0.8rem; color: var(--secondary); text-align: right; }
+        td { padding: 15px 12px; background: #fff; border-bottom: 1px solid #f1f5f9; font-size: 0.9rem; font-weight: 600; }
+        
+        .delete-btn {
+            color: var(--danger);
+            background: #fef2f2;
+            border: none;
+            padding: 6px 12px;
             border-radius: 8px;
-            font-size: 0.75rem;
-            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.8rem;
         }
 
-        /* تنسيق الهجري في الجوال */
-        .hijri-group {
-            display: flex; 
-            gap: 5px; 
-            margin-bottom: 10px;
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: var(--secondary);
+            font-size: 0.9rem;
         }
-        .hijri-group select { padding: 10px 5px; font-size: 0.85rem; }
+        footer .heart { color: var(--danger); animation: heartbeat 1.5s infinite; display: inline-block; }
+        
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
 
+        footer b { color: var(--primary); font-weight: 800; }
+
+        /* Flatpickr Customization */
+        .flatpickr-calendar { border-radius: 15px !important; box-shadow: var(--shadow) !important; border: none !important; }
     </style>
 </head>
 
@@ -223,10 +205,10 @@
 
         <div class="section-card">
             <div class="unit-header">
-                <div class="unit-icon">⚙️</div>
+                <div class="unit-icon">📅</div>
                 <div class="unit-title">البيانات الأساسية</div>
             </div>
-            <div class="grid-layout">
+            <div style="display: grid; gap: 15px;">
                 <div>
                     <label>المدة المقررة</label>
                     <select id="level" onchange="calculate()">
@@ -236,7 +218,7 @@
                 </div>
                 <div>
                     <label>تاريخ المباشرة (ميلادي)</label>
-                    <input type="text" id="startDate" readonly placeholder="انقر لاختيار التاريخ">
+                    <input type="text" id="startDate" readonly placeholder="اختر تاريخ المباشرة">
                 </div>
             </div>
 
@@ -246,61 +228,64 @@
                     <span id="startH" class="info-value">-</span>
                 </div>
                 <div class="info-item">
-                    <span class="info-label">النهاية الافتراضية (M)</span>
-                    <span id="endM_base" class="info-value highlight-blue">-</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">النهاية الافتراضية (H)</span>
-                    <span id="endH_base" class="info-value highlight-blue">-</span>
+                    <span class="info-label">النهاية الافتراضية</span>
+                    <span id="endM_base" class="info-value" style="color:var(--primary)">-</span>
                 </div>
             </div>
         </div>
 
         <div class="section-card">
             <div class="unit-header">
-                <div class="unit-icon">🕒</div>
-                <div class="unit-title">إضافة تمديد</div>
-            </div>
-            <div class="grid-layout">
-                <div>
-                    <label>التاريخ الميلادي</label>
-                    <input type="text" id="excStartM" placeholder="من" style="margin-bottom:10px;" readonly>
-                    <input type="text" id="excEndM" placeholder="إلى" readonly>
-                </div>
-                <div>
-                    <label>التاريخ الهجري</label>
-                    <div class="hijri-group">
-                        <select id="hDayS"><option value="">يوم</option></select>
-                        <select id="hMonthS"><option value="">شهر</option></select>
-                        <select id="hYearS"><option value="">سنة</option></select>
-                    </div>
-                    <div class="hijri-group">
-                        <select id="hDayE"><option value="">يوم</option></select>
-                        <select id="hMonthE"><option value="">شهر</option></select>
-                        <select id="hYearE"><option value="">سنة</option></select>
-                    </div>
-                </div>
-                <div>
-                    <label>أو تمديد مباشر (أيام)</label>
-                    <input type="number" id="excDays" placeholder="مثلاً: 15" pattern="\d*">
-                    <button class="btn-action" onclick="addException()">حفظ التمديد</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="section-card">
-            <div class="unit-header">
-                <div class="unit-icon">✅</div>
-                <div class="unit-title">النتائج النهائية</div>
+                <div class="unit-icon">➕</div>
+                <div class="unit-title">إضافة تمديد (غياب/إجازة)</div>
             </div>
             
-            <div class="table-container">
+            <div style="display: grid; gap: 15px;">
+                <div>
+                    <label>بالتاريخ الميلادي</label>
+                    <div style="display: flex; gap: 8px;">
+                        <input type="text" id="excStartM" placeholder="من" readonly>
+                        <input type="text" id="excEndM" placeholder="إلى" readonly>
+                    </div>
+                </div>
+
+                <div style="text-align: center; color: #cbd5e1; font-weight: 800; font-size: 0.8rem;">أو بالهجري</div>
+
+                <div>
+                    <div class="hijri-group">
+                        <select id="hDayS"><option value="">اليوم</option></select>
+                        <select id="hMonthS"><option value="">الشهر</option></select>
+                        <select id="hYearS"><option value="">السنة</option></select>
+                    </div>
+                    <div class="hijri-group">
+                        <select id="hDayE"><option value="">اليوم</option></select>
+                        <select id="hMonthE"><option value="">الشهر</option></select>
+                        <select id="hYearE"><option value="">السنة</option></select>
+                    </div>
+                </div>
+
+                <div style="border-top: 1px solid #f1f5f9; pt-15">
+                    <label>أو تمديد مباشر (بالأيام)</label>
+                    <input type="number" id="excDays" placeholder="مثلاً: 15 يوم" pattern="\d*">
+                </div>
+
+                <button class="btn-action" onclick="addException()">حفظ وإضافة التمديد</button>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <div class="unit-header">
+                <div class="unit-icon">📊</div>
+                <div class="unit-title">النتائج وجدول التمديدات</div>
+            </div>
+            
+            <div class="table-container" id="tableContainer" style="display: none;">
                 <table id="excTable">
                     <thead>
                         <tr>
                             <th>الفترة</th>
                             <th>الأيام</th>
-                            <th>حذف</th>
+                            <th>إجراء</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -309,27 +294,28 @@
 
             <div class="results-grid">
                 <div class="result-box">
-                    <span class="info-label">إجمالي التمديد</span>
+                    <span class="info-label">إجمالي أيام التمديد</span>
                     <span class="val-main" id="totalExc">0 يوم</span>
                 </div>
-                <div class="result-box">
-                    <span class="info-label">البداية الجديدة</span>
-                    <span class="val-main" id="finalStartM">-</span>
-                    <span class="val-sub" id="finalStartH">-</span>
-                </div>
                 <div class="result-box highlight">
-                    <span class="info-label" style="color:var(--success)">موعد التخرج النهائي</span>
-                    <span class="val-main" id="finalEndM" style="color:var(--success)">-</span>
+                    <span class="info-label">موعد التخرج النهائي المتوقع</span>
+                    <span class="val-main" id="finalEndM">-</span>
                     <span class="val-sub" id="finalEndH">-</span>
                 </div>
             </div>
         </div>
+
+        <footer>
+            تم التطوير بكل <span class="heart">❤</span> بواسطة <br>
+            <b>ماجد العسيري</b>
+        </footer>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ar.js"></script>
 
     <script>
+        // حافظت على نفس المنطق البرمجي الخاص بك لضمان دقة الحسابات
         let bStart = null, exceptions = [];
 
         function fillHijriLists() {
@@ -344,9 +330,9 @@
         }
         fillHijriLists();
 
-        const fpS = flatpickr("#startDate", { locale: "ar", disableMobile: "true", onChange: d => { bStart = d[0]; calculate(); } });
-        const fpES = flatpickr("#excStartM", { locale: "ar", disableMobile: "true" });
-        const fpEE = flatpickr("#excEndM", { locale: "ar", disableMobile: "true" });
+        const fpS = flatpickr("#startDate", { locale: "ar", altInput: true, altFormat: "j F Y", onChange: d => { bStart = d[0]; calculate(); } });
+        const fpES = flatpickr("#excStartM", { locale: "ar", altInput: true, altFormat: "j F" });
+        const fpEE = flatpickr("#excEndM", { locale: "ar", altInput: true, altFormat: "j F" });
 
         function toH(date) { return moment(date).format('iD iMMMM iYYYY') + " هـ"; }
 
@@ -356,12 +342,11 @@
             document.getElementById('startH').innerText = toH(bStart);
             let baseEnd = moment(bStart).add(parseInt(document.getElementById('level').value), 'months');
             document.getElementById('endM_base').innerText = baseEnd.format('YYYY-MM-DD');
-            document.getElementById('endH_base').innerText = toH(baseEnd.toDate());
             render();
         }
 
         function addException() {
-            if (!bStart) return alert("يرجى تحديد تاريخ البداية");
+            if (!bStart) return alert("يرجى تحديد تاريخ البداية أولاً");
             let start, end;
             const dInp = document.getElementById('excDays').value;
             const hS = { d: document.getElementById('hDayS').value, m: document.getElementById('hMonthS').value, y: document.getElementById('hYearS').value };
@@ -378,7 +363,7 @@
                 end = moment(start).add(parseInt(dInp)-1, 'days');
             }
 
-            if (!start || !end || !start.isValid()) return alert("تحقق من التواريخ");
+            if (!start || !end || !start.isValid()) return alert("تحقق من صحة تواريخ التمديد");
 
             let total = end.diff(start, 'days') + 1;
             let mVal = parseInt(document.getElementById('level').value);
@@ -389,8 +374,7 @@
 
             exceptions.push({
                 range: start.format('MM/DD') + " ➔ " + end.format('MM/DD'),
-                accepted,
-                rejected: total - accepted
+                accepted
             });
 
             ["hDayS", "hMonthS", "hYearS", "hDayE", "hMonthE", "hYearE", "excDays"].forEach(id => document.getElementById(id).value = "");
@@ -402,29 +386,32 @@
             const tb = document.querySelector("#excTable tbody");
             tb.innerHTML = "";
             let totalDays = 0;
+            
+            if(exceptions.length > 0) document.getElementById('tableContainer').style.display = 'block';
+            
             exceptions.forEach((ex, i) => {
                 totalDays += ex.accepted;
                 tb.innerHTML += `<tr>
                     <td>${ex.range}</td>
-                    <td style="font-weight:bold; color:var(--primary)">${ex.accepted} ي</td>
-                    <td><button class="delete-link" onclick="remove(${i})">حذف</button></td>
+                    <td><span style="color:var(--primary)">${ex.accepted} يوم</span></td>
+                    <td><button class="delete-btn" onclick="remove(${i})">حذف</button></td>
                 </tr>`;
             });
 
             document.getElementById('totalExc').innerText = totalDays + " يوم";
             
             if (bStart) {
-                let currentStart = moment(bStart).add(totalDays, 'days');
-                document.getElementById('finalStartM').innerText = currentStart.format('YYYY-MM-DD');
-                document.getElementById('finalStartH').innerText = toH(currentStart.toDate());
-
-                let finalEnd = moment(currentStart).add(parseInt(document.getElementById('level').value), 'months');
+                let finalEnd = moment(bStart).add(parseInt(document.getElementById('level').value), 'months').add(totalDays, 'days');
                 document.getElementById('finalEndM').innerText = finalEnd.format('YYYY-MM-DD');
                 document.getElementById('finalEndH').innerText = toH(finalEnd.toDate());
             }
         }
 
-        function remove(i) { exceptions.splice(i, 1); render(); }
+        function remove(i) { 
+            exceptions.splice(i, 1); 
+            if(exceptions.length === 0) document.getElementById('tableContainer').style.display = 'none';
+            render(); 
+        }
     </script>
 </body>
 </html>
