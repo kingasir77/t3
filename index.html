@@ -13,7 +13,6 @@
     <script src="https://cdn.jsdelivr.net/npm/moment-hijri@2.1.2/moment-hijri.min.js"></script>
 
     <style>
-        /* التنسيقات الأصلية الخاصة بك كما هي دون تغيير */
         * {
             margin: 0;
             padding: 0;
@@ -22,51 +21,46 @@
         }
 
         :root {
-            --bg: radial-gradient(circle at top right, #1e3a8a 0%, transparent 25%),
-                  radial-gradient(circle at bottom left, #1d4ed8 0%, transparent 25%),
-                  linear-gradient(180deg, #020617, #0f172a);
-            --card: rgba(15, 23, 42, 0.72);
-            --stroke: rgba(255, 255, 255, 0.06);
-            --primary: #2563eb;
-            --text: #f8fafc;
+            /* خلفية أريح للعين: ألوان داكنة مريحة مع تقليل التباين الصارخ */
+            --bg: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            --card: rgba(30, 41, 59, 0.7);
+            --stroke: rgba(255, 255, 255, 0.08);
+            --primary: #3b82f6;
+            --text: #f1f5f9;
             --sub: #94a3b8;
-            --radius-xl: 30px;
-            --shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+            --radius-xl: 24px;
+            --shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
         }
 
         body {
             font-family: 'Cairo', sans-serif;
             min-height: 100vh;
             background: var(--bg);
+            background-attachment: fixed;
             color: var(--text);
-            overflow-x: hidden;
             padding: 16px;
-            -webkit-font-smoothing: antialiased;
+            line-height: 1.5;
         }
 
         .container {
-            position: relative;
-            z-index: 2;
             max-width: 500px;
             margin: auto;
         }
 
         .topbar-inner {
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            background: rgba(15, 23, 42, .75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(15, 23, 42, 0.6);
             border: 1px solid var(--stroke);
-            border-radius: 24px;
+            border-radius: 20px;
             padding: 15px;
             margin-bottom: 20px;
-            box-shadow: var(--shadow);
         }
 
         .app-mini { display: flex; align-items: center; justify-content: space-between; }
         .app-left { display: flex; align-items: center; gap: 12px; }
-        .logo { width: 45px; height: 45px; border-radius: 15px; background: linear-gradient(135deg, #2563eb, #60a5fa); display: flex; align-items: center; justify-content: center; font-size: 20px; }
-        .title h1 { font-size: 1rem; font-weight: 800; }
-        .live-dot { width: 10px; height: 10px; border-radius: 50%; background: #10b981; box-shadow: 0 0 10px #10b981; }
+        .logo { width: 40px; height: 40px; border-radius: 12px; background: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 18px; }
+        .title h1 { font-size: 0.95rem; font-weight: 800; }
 
         .card {
             background: var(--card);
@@ -74,8 +68,7 @@
             border-radius: var(--radius-xl);
             padding: 20px;
             margin-bottom: 16px;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            box-shadow: var(--shadow);
         }
 
         .grid { display: flex; flex-direction: column; gap: 15px; }
@@ -96,37 +89,33 @@
 
         input, select {
             width: 100%;
-            -webkit-appearance: none;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 14px;
+            border-radius: 12px;
+            padding: 12px;
             color: white;
             font-family: inherit;
-            font-size: 0.9rem;
-            font-weight: 600;
             outline: none;
             transition: 0.3s;
         }
 
-        input:focus { border-color: var(--primary); background: rgba(37, 99, 235, 0.1); }
+        input:focus { border-color: var(--primary); }
 
-        .hijri-group { display: flex; gap: 6px; }
-        .hijri-group select { padding: 12px 5px; font-size: 0.75rem; text-align: center; }
+        .hijri-group { display: flex; gap: 5px; }
 
         .btn {
-            background: linear-gradient(135deg, #2563eb, #60a5fa);
+            background: var(--primary);
             color: white; border: none;
-            border-radius: 18px; padding: 16px;
-            font-weight: 800; font-size: 1rem;
-            width: 100%; margin-top: 10px;
-            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
-            cursor: pointer;
+            border-radius: 14px; padding: 15px;
+            font-weight: 800; width: 100%;
+            cursor: pointer; transition: 0.3s;
         }
+
+        .btn:active { transform: scale(0.98); }
 
         .info-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
             gap: 10px;
             margin-top: 15px;
         }
@@ -135,31 +124,33 @@
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.05);
             padding: 12px;
-            border-radius: 18px;
+            border-radius: 15px;
             text-align: center;
         }
 
-        .info-label { font-size: 0.65rem; color: var(--sub); display: block; margin-bottom: 4px; }
-        .info-value { font-size: 0.85rem; font-weight: 800; color: #fff; }
+        .info-label { font-size: 0.7rem; color: var(--sub); display: block; margin-bottom: 2px; }
+        .info-value { font-size: 0.85rem; font-weight: 700; color: #fff; display: block; }
 
         .result {
             background: rgba(255, 255, 255, 0.04);
-            border-radius: 20px;
+            border-radius: 18px;
             padding: 18px;
             text-align: center;
             margin-bottom: 12px;
         }
-        .highlight { border: 1px solid rgba(16, 185, 129, 0.3); background: rgba(16, 185, 129, 0.05); }
-        .main-value { font-size: 1.2rem; font-weight: 900; display: block; margin-top: 5px; }
-        .sub-value { font-size: 0.8rem; color: var(--sub); margin-top: 5px; display: block; }
+        .highlight { border: 1px solid rgba(16, 185, 129, 0.3); background: rgba(16, 185, 129, 0.08); }
+        .main-value { font-size: 1.1rem; font-weight: 900; display: block; margin-top: 4px; }
+        .sub-value { font-size: 0.8rem; color: var(--sub); display: block; margin-top: 2px; }
 
-        footer { text-align: center; color: var(--sub); font-size: 0.75rem; padding: 20px 0; }
+        table { width: 100%; border-collapse: collapse; }
+        th { color: var(--sub); font-size: 0.75rem; padding-bottom: 10px; text-align: right; }
+        td { padding: 12px 0; border-top: 1px solid var(--stroke); font-size: 0.8rem; vertical-align: middle; }
+        
+        .exc-range { display: block; font-weight: 600; color: #cbd5e1; }
+        .exc-days { color: var(--primary); font-weight: 800; }
+        .badge-out { color: #f87171; font-size: 0.7rem; font-weight: bold; }
 
-        .badge-out { color: #ef4444; font-size: 0.7rem; display: block; font-weight: bold; }
-
-        @media screen and (max-width: 768px) {
-            input, select { font-size: 16px !important; }
-        }
+        footer { text-align: center; color: var(--sub); font-size: 0.75rem; padding: 20px 0; opacity: 0.7; }
     </style>
 </head>
 
@@ -170,11 +161,8 @@
             <div class="app-mini">
                 <div class="app-left">
                     <div class="logo"><i class="fa-solid fa-graduation-cap"></i></div>
-                    <div class="title">
-                        <h1>مساعد تعديل التدريب</h1>
-                    </div>
+                    <div class="title"><h1>مساعد تعديل التدريب</h1></div>
                 </div>
-                <div class="live-dot"></div>
             </div>
         </div>
 
@@ -187,7 +175,6 @@
                         <option value="24">24 شهر — المستوى السابع</option>
                     </select>
                 </div>
-
                 <div>
                     <label>تاريخ بداية التدريب</label>
                     <input type="text" id="startDate" readonly placeholder="اختر التاريخ">
@@ -196,19 +183,20 @@
 
             <div id="baseInfoBox" style="display:none" class="info-grid">
                 <div class="info-box">
-                    <span class="info-label">البداية هجري</span>
+                    <span class="info-label">تاريخ البداية (هجري)</span>
                     <span id="startH" class="info-value">-</span>
                 </div>
-                <div class="info-box">
-                    <span class="info-label">النهاية الافتراضية</span>
+                <div class="info-box" style="border-color: rgba(59, 130, 246, 0.3);">
+                    <span class="info-label">نهاية التدريب الافتراضية (قبل التمديد)</span>
                     <span id="endM_base" class="info-value" style="color:#60a5fa">-</span>
+                    <span id="endH_base" class="info-value" style="color:#94a3b8; font-size: 0.75rem; margin-top: 4px;">-</span>
                 </div>
             </div>
         </div>
 
         <div class="card">
             <label style="color:white; margin-bottom:15px; display:flex; align-items:center; gap:8px;">
-                <i class="fa-solid fa-plus-circle" style="color: #60a5fa;"></i> إضافة تعديل أو تمديد
+                <i class="fa-solid fa-plus-circle" style="color: var(--primary);"></i> إضافة تعديل أو تمديد
             </label>
             
             <div class="grid">
@@ -242,7 +230,7 @@
                 </div>
 
                 <div>
-                    <label>أو عدد أيام التمديد مباشرة</label>
+                    <label>أو عدد الأيام مباشرة</label>
                     <input type="number" id="excDays" placeholder="مثال: 15">
                 </div>
 
@@ -252,33 +240,31 @@
 
         <div class="card">
             <div id="tableContainer" style="display:none; margin-bottom:20px;">
-                <table id="excTable" style="width:100%; border-collapse:collapse; font-size:0.8rem;">
-                    <thead style="color:var(--sub); border-bottom:1px solid var(--stroke);">
+                <table>
+                    <thead>
                         <tr>
-                            <th style="padding:10px; text-align:right;">الفترة</th>
-                            <th style="padding:10px;">الأيام</th>
-                            <th></th>
+                            <th>تفاصيل فترة التمديد</th>
+                            <th style="text-align:center;">الأيام</th>
+                            <th style="text-align:left;">إجراء</th>
                         </tr>
                     </thead>
-                    <tbody></tbody>
+                    <tbody id="excTableBody"></tbody>
                 </table>
             </div>
 
             <div class="result">
-                <span class="info-label">إجمالي التعديل (المعتمد)</span>
-                <span class="main-value" id="totalExc" style="color:#60a5fa">0 يوم</span>
+                <span class="info-label">إجمالي التعديل المعتمد</span>
+                <span class="main-value" id="totalExc" style="color:var(--primary)">0 يوم</span>
             </div>
 
             <div class="result highlight">
-                <span class="info-label" style="color:#10b981">تاريخ نهاية التدريب المتوقع</span>
+                <span class="info-label" style="color:#10b981">تاريخ نهاية التدريب النهائي</span>
                 <span class="main-value" id="finalEndM" style="color:#10b981">-</span>
                 <span class="sub-value" id="finalEndH">-</span>
             </div>
         </div>
 
-        <footer>
-            برمجة وتطوير: <b>ماجد العسيري</b>
-        </footer>
+        <footer>برمجة وتطوير: <b>ماجد العسيري</b></footer>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -315,59 +301,56 @@
             document.getElementById('baseInfoBox').style.display = 'grid';
             document.getElementById('startH').innerText = toH(bStart.toDate());
             
-            const mVal = parseInt(document.getElementById('level').value);
-            // تاريخ النهاية الافتراضي (بدون تمديد)
-            let baseEnd = bStart.clone().add(mVal, 'months');
+            const months = parseInt(document.getElementById('level').value);
+            let baseEnd = bStart.clone().add(months, 'months');
+            
+            // إضافة التاريخ الهجري والميلادي للنهاية الافتراضية
             document.getElementById('endM_base').innerText = baseEnd.format('YYYY-MM-DD');
+            document.getElementById('endH_base').innerText = toH(baseEnd.toDate());
 
-            let totalEffectiveDays = 0;
-            const tb = document.querySelector("#excTable tbody");
+            let totalDays = 0;
+            const tb = document.getElementById("excTableBody");
             tb.innerHTML = "";
 
-            if (exceptions.length > 0) document.getElementById('tableContainer').style.display = 'block';
-
             exceptions.forEach((ex, i) => {
-                // المنطق المطور: التحقق من تداخل فترة التمديد مع فترة التدريب
                 let intersectStart = moment.max(ex.start, bStart);
                 let intersectEnd = moment.min(ex.end, baseEnd);
-
                 let effective = 0;
                 if (intersectEnd.isSameOrAfter(intersectStart)) {
                     effective = intersectEnd.diff(intersectStart, 'days') + 1;
                 }
-
-                totalEffectiveDays += effective;
+                totalDays += effective;
 
                 tb.innerHTML += `<tr>
-                    <td style="padding:8px;">${ex.start.format('DD/MM')} - ${ex.end.format('DD/MM')}</td>
-                    <td style="text-align:center;">
-                        ${effective} ي 
-                        ${effective === 0 ? '<span class="badge-out">خارج النطاق</span>' : ''}
+                    <td>
+                        <span class="exc-range">من: ${ex.start.format('YYYY-MM-DD')}</span>
+                        <span class="exc-range">إلى: ${ex.end.format('YYYY-MM-DD')}</span>
                     </td>
                     <td style="text-align:center;">
-                        <span style="color:#ef4444; font-weight:bold; cursor:pointer;" onclick="removeExc(${i})">حذف</span>
+                        <span class="exc-days">${effective} يوم</span>
+                        ${effective === 0 ? '<br><span class="badge-out">خارج النطاق</span>' : ''}
+                    </td>
+                    <td style="text-align:left;">
+                        <i class="fa-solid fa-trash-can" style="color:#f87171; cursor:pointer;" onclick="removeExc(${i})"></i>
                     </td>
                 </tr>`;
             });
 
-            document.getElementById('totalExc').innerText = totalEffectiveDays + " يوم";
+            document.getElementById('tableContainer').style.display = exceptions.length > 0 ? 'block' : 'none';
+            document.getElementById('totalExc').innerText = totalDays + " يوم";
             
-            // تاريخ التخرج النهائي = النهاية الافتراضية + أيام التمديد المحتسبة
-            let finalEnd = baseEnd.clone().add(totalEffectiveDays, 'days');
-            
+            let finalEnd = baseEnd.clone().add(totalDays, 'days');
             document.getElementById('finalEndM').innerText = finalEnd.format('YYYY-MM-DD');
             document.getElementById('finalEndH').innerText = toH(finalEnd.toDate());
         }
 
         function addException() {
             if (!bStart) return alert("حدد تاريخ البداية أولاً");
-            
             let start, end;
             const dInp = document.getElementById('excDays').value;
             const hS = { d: document.getElementById('hDayS').value, m: document.getElementById('hMonthS').value, y: document.getElementById('hYearS').value };
             const hE = { d: document.getElementById('hDayE').value, m: document.getElementById('hMonthE').value, y: document.getElementById('hYearE').value };
 
-            // تحديد التاريخ بناءً على المدخلات (هجري أو ميلادي أو أيام)
             if (hS.y && hS.m && hS.d) {
                 start = moment(`${hS.y}-${hS.m}-${hS.d}`, 'iYYYY-iM-iD');
                 end = dInp ? start.clone().add(parseInt(dInp) - 1, 'days') : moment(`${hE.y}-${hE.m}-${hE.d}`, 'iYYYY-iM-iD');
@@ -375,25 +358,20 @@
                 start = moment(fpES.selectedDates[0]);
                 end = dInp ? start.clone().add(parseInt(dInp) - 1, 'days') : moment(fpEE.selectedDates[0]);
             } else if (dInp) {
-                // إذا أدخل أيام فقط، نفترض أنها تبدأ من اليوم (أو يمكنك جعلها من بداية التدريب)
                 start = bStart.clone();
                 end = start.clone().add(parseInt(dInp) - 1, 'days');
             }
 
-            if (!start || !end || !start.isValid() || !end.isValid()) return alert("يرجى إدخال البيانات بشكل صحيح");
-
-            exceptions.push({ start: start, end: end });
+            if (!start || !end || !start.isValid()) return alert("يرجى إدخال التواريخ بشكل صحيح");
             
-            // تنظيف الحقول
+            exceptions.push({ start: start, end: end });
             ["hDayS","hMonthS","hYearS","hDayE","hMonthE","hYearE","excDays"].forEach(id => document.getElementById(id).value = "");
             fpES.clear(); fpEE.clear();
-            
             calculate();
         }
 
         function removeExc(i) {
             exceptions.splice(i, 1);
-            if (exceptions.length === 0) document.getElementById('tableContainer').style.display = 'none';
             calculate();
         }
     </script>
