@@ -14,14 +14,14 @@
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap');
 
         :root {
-            --primary: #007aff; /* أزرق آيفون رسمي */
-            --bg-app: #f2f2f7; /* خلفية النظام */
+            --primary: #1a73e8;
+            --bg-app: #f6f9fc;
             --card-bg: #ffffff;
-            --text-dark: #000000;
-            --text-gray: #8e8e93;
-            --success: #34c759;
-            --danger: #ff3b30;
-            --radius: 14px;
+            --text-dark: #202124;
+            --text-gray: #5f6368;
+            --success: #1e8e3e;
+            --danger: #d93025;
+            --radius-app: 18px;
         }
 
         * { 
@@ -33,109 +33,115 @@
         body {
             background-color: var(--bg-app);
             color: var(--text-dark);
-            padding: 20px 16px;
-            user-select: none;
+            padding: 16px;
+            line-height: 1.5;
         }
 
-        .container { max-width: 420px; margin: 0 auto; width: 100%; }
+        .container { max-width: 450px; margin: 0 auto; width: 100%; }
 
-        header { margin-bottom: 24px; padding-right: 8px; }
-        header h1 { font-weight: 800; font-size: 1.5rem; letter-spacing: -0.5px; }
+        header { text-align: center; margin: 20px 0 30px 0; }
+        header h1 { font-weight: 800; font-size: 1.6rem; color: var(--primary); }
 
         .card {
             background: var(--card-bg);
-            border-radius: var(--radius);
-            padding: 20px;
-            margin-bottom: 16px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+            border-radius: var(--radius-app);
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            border: 1px solid rgba(0,0,0,0.02);
         }
 
-        .group-title {
-            font-size: 0.85rem;
-            color: var(--text-gray);
-            font-weight: 700;
-            margin-bottom: 12px;
-            margin-right: 4px;
-            text-transform: uppercase;
+        .section-label {
+            font-size: 0.8rem;
+            color: var(--primary);
+            font-weight: 800;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .input-item { margin-bottom: 16px; }
-        .input-item:last-child { margin-bottom: 0; }
-
-        label { 
-            display: block; 
-            margin-bottom: 6px; 
-            font-weight: 700; 
-            font-size: 0.85rem; 
-            color: var(--text-dark); 
-        }
-
-        .tiny-hint { font-size: 0.65rem; color: var(--text-gray); font-weight: 600; margin-bottom: 4px; display: block; }
+        .input-group { margin-bottom: 18px; }
+        label { display: block; margin-bottom: 6px; font-weight: 700; font-size: 0.85rem; color: var(--text-dark); }
+        .tiny-tag { font-size: 0.65rem; color: var(--text-gray); font-weight: 700; margin-bottom: 4px; display: block; }
 
         input, select {
             width: 100%;
-            padding: 12px 16px;
-            border: 1px solid #e5e5ea;
-            background-color: #fbfbfd;
-            border-radius: 10px;
-            font-size: 1rem;
+            padding: 14px 16px;
+            border: 1.5px solid #e8eaed;
+            background-color: #ffffff;
+            border-radius: 12px;
+            font-size: 0.95rem;
             color: var(--text-dark);
             font-weight: 600;
-            transition: all 0.2s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        input:focus { border-color: var(--primary); outline: none; background: #fff; }
+        input:focus { border-color: var(--primary); outline: none; box-shadow: 0 0 0 3px rgba(26,115,232,0.1); }
 
-        .btn-main {
+        /* تنسيق الهجري */
+        .hijri-row { display: flex; gap: 8px; margin-bottom: 10px; }
+        .hijri-row select { flex: 1; min-width: 0; padding: 12px 4px; font-size: 0.85rem; }
+
+        .btn-add {
             background: var(--primary);
             color: white; border: none;
-            padding: 16px; border-radius: 12px;
+            padding: 16px; border-radius: 14px;
             font-weight: 800; cursor: pointer;
             width: 100%; font-size: 1rem;
-            margin-top: 8px;
+            margin-top: 10px;
+            box-shadow: 0 4px 10px rgba(26,115,232,0.2);
         }
 
-        .btn-main:active { opacity: 0.8; transform: scale(0.99); }
-
-        /* منطقة عرض التواريخ السريعة */
-        .quick-info {
-            display: flex;
-            gap: 10px;
-            margin-top: 12px;
-        }
-        .info-pill {
-            flex: 1;
+        /* عرض معلومات النهاية التلقائية */
+        .default-end-box {
             background: #f8f9fa;
-            padding: 10px;
-            border-radius: 10px;
-            text-align: center;
+            border-radius: 12px;
+            padding: 12px;
+            margin-top: 15px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            border: 1px dashed #dadce0;
         }
-        .pill-label { font-size: 0.6rem; color: var(--text-gray); font-weight: 700; display: block; }
-        .pill-value { font-size: 0.8rem; font-weight: 800; color: var(--primary); }
+        .mini-info { text-align: center; }
+        .mini-label { font-size: 0.6rem; color: var(--text-gray); font-weight: 800; display: block; }
+        .mini-val { font-size: 0.8rem; font-weight: 800; color: var(--primary); }
 
-        /* النتائج النهائية */
-        .result-item {
-            padding: 12px 0;
-            border-bottom: 1px solid #f2f2f7;
+        /* منطقة النتائج */
+        .summary-card { background: #1a73e8; color: white; }
+        .summary-card .section-label { color: rgba(255,255,255,0.9); }
+        .res-line {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
-        .result-item:last-child { border-bottom: none; }
-        .res-label { font-size: 0.9rem; font-weight: 600; color: var(--text-gray); }
-        .res-value { font-size: 1rem; font-weight: 800; text-align: left; }
-        .res-value.highlight { color: var(--success); font-size: 1.1rem; }
+        .res-line:last-child { border-bottom: none; }
+        .res-txt { font-size: 0.9rem; font-weight: 600; }
+        .res-val { font-size: 1rem; font-weight: 800; }
+        .res-val.big { font-size: 1.2rem; }
 
-        .table-view { width: 100%; margin-top: 10px; }
-        .row { display: flex; justify-content: space-between; padding: 10px 4px; border-bottom: 1px solid #f2f2f7; font-size: 0.85rem; }
-        .del-btn { color: var(--danger); font-weight: 800; }
+        /* الجدول */
+        .exc-item {
+            display: flex;
+            justify-content: space-between;
+            background: #fff;
+            padding: 10px 15px;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            border: 1px solid #f1f3f4;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+        .del-text { color: var(--danger); font-size: 0.75rem; cursor: pointer; }
 
         footer {
             text-align: center;
-            margin-top: 40px;
-            padding-bottom: 30px;
+            padding: 40px 0;
             color: var(--text-gray);
-            font-size: 0.8rem;
+            font-size: 0.85rem;
         }
     </style>
 </head>
@@ -144,84 +150,96 @@
 
     <div class="container">
         <header>
-            <h1>مساعد التدريب</h1>
+            <h1>مساعد فترات التدريب</h1>
         </header>
 
         <div class="card">
-            <div class="group-title">الإعدادات الأساسية</div>
-            <div class="input-item">
+            <div class="section-label"><span>📅</span> البيانات الأساسية</div>
+            <div class="input-group">
                 <label>المدة المقررة</label>
                 <select id="level" onchange="calculate()">
                     <option value="18">18 شهر (المستوى الخامس)</option>
                     <option value="24">24 شهر (المستوى السابع)</option>
                 </select>
             </div>
-            <div class="input-item">
+            <div class="input-group">
                 <label>بداية التدريب (ميلادي)</label>
-                <input type="text" id="startDate" readonly placeholder="اختر التاريخ">
+                <input type="text" id="startDate" readonly placeholder="حدد تاريخ المباشرة">
             </div>
 
-            <div id="baseInfoBox" style="display:none;" class="quick-info">
-                <div class="info-pill">
-                    <span class="pill-label">بداية هجري</span>
-                    <span id="startH" class="pill-value">-</span>
+            <div id="baseInfoBox" style="display:none;" class="default-end-box">
+                <div class="mini-info">
+                    <span class="mini-label">تاريخ البداية هجري</span>
+                    <span id="startH" class="mini-val">-</span>
                 </div>
-                <div class="info-pill">
-                    <span class="pill-label">نهاية افتراضية</span>
-                    <span id="endM_base" class="pill-value">-</span>
+                <div class="mini-info">
+                    <span class="mini-label">تاريخ النهاية الافتراضي</span>
+                    <span id="endM_base" class="mini-val">-</span>
                 </div>
             </div>
         </div>
 
         <div class="card">
-            <div class="group-title">إضافة تمديد (غياب/إجازة)</div>
+            <div class="section-label"><span>➕</span> إضافة فترات تمديد (غياب)</div>
             
-            <div class="input-item">
-                <span class="tiny-hint">من (ميلادي)</span>
-                <input type="text" id="excStartM" placeholder="اختر بداية الفترة" readonly>
-            </div>
-            <div class="input-item">
-                <span class="tiny-hint">إلى (ميلادي)</span>
-                <input type="text" id="excEndM" placeholder="اختر نهاية الفترة" readonly>
+            <span class="tiny-tag">ميلادي (من - إلى):</span>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 15px;">
+                <input type="text" id="excStartM" placeholder="من" readonly>
+                <input type="text" id="excEndM" placeholder="إلى" readonly>
             </div>
 
-            <div style="margin: 20px 0; height: 1px; background: #f2f2f7;"></div>
-
-            <div class="input-item">
-                <span class="tiny-hint">أو عدد الأيام مباشرة</span>
-                <input type="number" id="excDays" placeholder="مثلاً: 14" pattern="\d*">
+            <span class="tiny-tag">أو هجري (من):</span>
+            <div class="hijri-row">
+                <select id="hDayS"><option value="">يوم</option></select>
+                <select id="hMonthS"><option value="">شهر</option></select>
+                <select id="hYearS"><option value="">سنة</option></select>
             </div>
 
-            <button class="btn-main" onclick="addException()">إضافة المدة</button>
+            <span class="tiny-tag">هجري (إلى):</span>
+            <div class="hijri-row">
+                <select id="hDayE"><option value="">يوم</option></select>
+                <select id="hMonthE"><option value="">شهر</option></select>
+                <select id="hYearE"><option value="">سنة</option></select>
+            </div>
+
+            <div style="margin: 20px 0; border-top: 1px solid #f1f3f4; padding-top: 15px;">
+                <label>أو إضافة مدة بالأيام مباشرة</label>
+                <input type="number" id="excDays" placeholder="أدخل عدد الأيام" pattern="\d*">
+            </div>
+
+            <button class="btn-add" onclick="addException()">إضافة المدة للجدول</button>
         </div>
 
-        <div class="card">
-            <div class="group-title">ملخص النتائج</div>
+        <div class="card summary-card">
+            <div class="section-label"><span>📊</span> ملخص النتائج النهائية</div>
             
-            <div id="tableContainer" style="display:none;" class="table-view">
+            <div id="tableContainer" style="display:none; margin-bottom: 20px; color: var(--text-dark);">
                 <div id="rowsList"></div>
-                <div style="margin-bottom: 15px;"></div>
             </div>
 
-            <div class="result-item">
-                <span class="res-label">إجمالي التمديد</span>
-                <span class="res-value" id="totalExc">0 يوم</span>
+            <div class="res-line">
+                <span class="res-txt">إجمالي أيام التمديد</span>
+                <span class="res-val" id="totalExc">0 يوم</span>
             </div>
-            <div class="result-item">
-                <span class="res-label">بداية جديدة</span>
-                <span class="res-value" id="finalStartM">-</span>
+            <div class="res-line">
+                <span class="res-txt">تاريخ البداية الجديد</span>
+                <div style="text-align: left;">
+                    <span class="res-val" id="finalStartM">-</span><br>
+                    <small id="finalStartH" style="font-size: 0.7rem; opacity: 0.8;">-</small>
+                </div>
             </div>
-            <div class="result-item">
-                <span class="res-label">موعد التخرج</span>
-                <span class="res-value highlight" id="finalEndM">-</span>
-            </div>
-            <div style="text-align: center; margin-top: 10px;">
-                <span id="finalEndH" style="font-size: 0.8rem; color: var(--text-gray); font-weight: 700;">-</span>
+            <div class="res-line">
+                <span class="res-txt">موعد التخرج المتوقع</span>
+                <div style="text-align: left;">
+                    <span class="res-val big" id="finalEndM">-</span><br>
+                    <small id="finalEndH" style="font-size: 0.75rem; opacity: 0.9; font-weight: 700;">-</small>
+                </div>
             </div>
         </div>
 
         <footer>
-            تطوير: <b>ماجد العسيري</b>
+            نظام إدارة فترات التدريب المطور<br>
+            برمجة وتصميم: <b>ماجد العسيري</b>
         </footer>
     </div>
 
@@ -230,6 +248,16 @@
 
     <script>
         let bStart = null, exceptions = [];
+
+        // تعبئة القوائم الهجرية
+        function fillHijri() {
+            const months = ["محرم", "صفر", "ربيع الأول", "ربيع الثاني", "جمادى الأولى", "جمادى الثانية", "رجب", "شعبان", "رمضان", "شوال", "ذو القعدة", "ذو الحجة"];
+            const currYear = parseInt(moment().format('iYYYY'));
+            ['hDayS', 'hDayE'].forEach(id => { for(let i=1; i<=30; i++) document.getElementById(id).innerHTML += `<option value="${i}">${i}</option>`; });
+            ['hMonthS', 'hMonthE'].forEach(id => { months.forEach((m, i) => document.getElementById(id).innerHTML += `<option value="${i+1}">${m}</option>`); });
+            ['hYearS', 'hYearE'].forEach(id => { for(let i=currYear-2; i<=currYear+5; i++) document.getElementById(id).innerHTML += `<option value="${i}">${i}</option>`; });
+        }
+        fillHijri();
 
         const fConfig = { locale: "ar", altInput: true, altFormat: "j F Y" };
         const fpS = flatpickr("#startDate", { ...fConfig, onChange: d => { bStart = d[0]; calculate(); } });
@@ -240,7 +268,7 @@
 
         function calculate() {
             if (!bStart) return;
-            document.getElementById('baseInfoBox').style.display = 'flex';
+            document.getElementById('baseInfoBox').style.display = 'grid';
             document.getElementById('startH').innerText = toH(bStart);
             let baseEnd = moment(bStart).add(parseInt(document.getElementById('level').value), 'months');
             document.getElementById('endM_base').innerText = baseEnd.format('YYYY-MM-DD');
@@ -251,21 +279,27 @@
             if (!bStart) return alert("حدد تاريخ البداية أولاً");
             let start, end;
             const dInp = document.getElementById('excDays').value;
+            const hS = { d: document.getElementById('hDayS').value, m: document.getElementById('hMonthS').value, y: document.getElementById('hYearS').value };
+            const hE = { d: document.getElementById('hDayE').value, m: document.getElementById('hMonthE').value, y: document.getElementById('hYearE').value };
 
-            if (fpES.selectedDates[0] && fpEE.selectedDates[0]) {
+            if (hS.y && hS.m && hS.d) {
+                start = moment(`${hS.y}-${hS.m}-${hS.d}`, 'iYYYY-iM-iD');
+                end = dInp ? moment(start).add(parseInt(dInp)-1, 'days') : moment(`${hE.y}-${hE.m}-${hE.d}`, 'iYYYY-iM-iD');
+            } else if (fpES.selectedDates[0]) {
                 start = moment(fpES.selectedDates[0]);
-                end = moment(fpEE.selectedDates[0]);
+                end = dInp ? moment(start).add(parseInt(dInp)-1, 'days') : moment(fpEE.selectedDates[0]);
             } else if (dInp) {
                 start = moment(bStart);
                 end = moment(start).add(parseInt(dInp)-1, 'days');
             }
 
-            if (!start || !end || !start.isValid()) return alert("أدخل التاريخ أو عدد الأيام");
+            if (!start || !end || !start.isValid()) return alert("تحقق من إدخال البيانات");
 
             let total = end.diff(start, 'days') + 1;
             exceptions.push({ range: start.format('DD/MM') + " - " + end.format('DD/MM'), days: total });
             render();
-            document.getElementById('excDays').value = "";
+            // مسح الخانات
+            ["hDayS", "hMonthS", "hYearS", "hDayE", "hMonthE", "hYearE", "excDays"].forEach(id => document.getElementById(id).value = "");
             fpES.clear(); fpEE.clear();
         }
 
@@ -277,7 +311,7 @@
             
             exceptions.forEach((ex, i) => {
                 totalDays += ex.days;
-                list.innerHTML += `<div class="row"><span>فترة ${ex.range}</span><span>${ex.days} يوم</span><span class="del-btn" onclick="remove(${i})">حذف</span></div>`;
+                list.innerHTML += `<div class="exc-item"><span>📅 فترة ${ex.range} (${ex.days} يوم)</span><span class="del-text" onclick="remove(${i})">حذف</span></div>`;
             });
 
             document.getElementById('totalExc').innerText = totalDays + " يوم";
@@ -285,6 +319,8 @@
             if (bStart) {
                 let currentStart = moment(bStart).add(totalDays, 'days');
                 document.getElementById('finalStartM').innerText = currentStart.format('YYYY-MM-DD');
+                document.getElementById('finalStartH').innerText = toH(currentStart.toDate());
+
                 let finalEnd = moment(currentStart).add(parseInt(document.getElementById('level').value), 'months');
                 document.getElementById('finalEndM').innerText = finalEnd.format('YYYY-MM-DD');
                 document.getElementById('finalEndH').innerText = toH(finalEnd.toDate());
