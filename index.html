@@ -9,8 +9,7 @@
     <title>مساعد فترات التدريب</title>
 
     <!-- Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
 
     <!-- Flatpickr -->
@@ -36,17 +35,19 @@
         :root {
 
             --bg:
-                radial-gradient(circle at top right, #1d4ed8 0%, transparent 25%),
-                radial-gradient(circle at bottom left, #7c3aed 0%, transparent 25%),
+                radial-gradient(circle at top right, #1e3a8a 0%, transparent 25%),
+                radial-gradient(circle at bottom left, #1d4ed8 0%, transparent 25%),
                 linear-gradient(180deg, #020617, #0f172a);
 
-            --card: rgba(15, 23, 42, 0.58);
+            --card: rgba(15, 23, 42, 0.72);
 
-            --stroke: rgba(255, 255, 255, 0.08);
+            --stroke: rgba(255, 255, 255, 0.06);
 
-            --primary: #3b82f6;
+            --primary: #2563eb;
 
-            --primary2: #8b5cf6;
+            --primary2: #60a5fa;
+
+            --primary3: #93c5fd;
 
             --text: #f8fafc;
 
@@ -56,14 +57,14 @@
 
             --danger: #ef4444;
 
-            --radius-xl: 34px;
+            --radius-xl: 30px;
 
-            --radius-lg: 26px;
+            --radius-lg: 24px;
 
             --radius-md: 18px;
 
             --shadow:
-                0 10px 50px rgba(0, 0, 0, 0.35);
+                0 10px 40px rgba(0, 0, 0, 0.35);
         }
 
         body {
@@ -78,7 +79,7 @@
 
             overflow-x: hidden;
 
-            padding: 18px;
+            padding: 12px;
 
             position: relative;
         }
@@ -90,14 +91,14 @@
 
             position: fixed;
 
-            width: 450px;
-            height: 450px;
+            width: 400px;
+            height: 400px;
 
             border-radius: 50%;
 
             filter: blur(120px);
 
-            opacity: .22;
+            opacity: .18;
 
             z-index: 0;
         }
@@ -112,7 +113,7 @@
 
         body::after {
 
-            background: #9333ea;
+            background: #1d4ed8;
 
             bottom: -150px;
             left: -120px;
@@ -126,20 +127,20 @@
 
             max-width: 520px;
 
+            width: 100%;
+
             margin: auto;
         }
-
-        /* HEADER */
 
         .topbar {
 
             position: sticky;
 
-            top: 12px;
+            top: 10px;
 
             z-index: 100;
 
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         .topbar-inner {
@@ -148,13 +149,13 @@
 
             -webkit-backdrop-filter: blur(24px);
 
-            background: rgba(15, 23, 42, .6);
+            background: rgba(15, 23, 42, .75);
 
-            border: 1px solid rgba(255, 255, 255, .08);
+            border: 1px solid rgba(255, 255, 255, .06);
 
             border-radius: 28px;
 
-            padding: 20px;
+            padding: 18px;
 
             box-shadow: var(--shadow);
         }
@@ -179,15 +180,15 @@
 
         .logo {
 
-            width: 58px;
-            height: 58px;
+            width: 56px;
+            height: 56px;
 
             border-radius: 20px;
 
             background:
                 linear-gradient(135deg,
-                    #3b82f6,
-                    #8b5cf6);
+                    #2563eb,
+                    #60a5fa);
 
             display: flex;
 
@@ -198,12 +199,12 @@
             font-size: 22px;
 
             box-shadow:
-                0 10px 25px rgba(59, 130, 246, .35);
+                0 10px 25px rgba(37, 99, 235, .35);
         }
 
         .title h1 {
 
-            font-size: 1.3rem;
+            font-size: 1.2rem;
 
             font-weight: 900;
         }
@@ -214,7 +215,7 @@
 
             color: var(--sub);
 
-            font-size: .82rem;
+            font-size: .78rem;
 
             font-weight: 700;
         }
@@ -232,9 +233,11 @@
                 0 0 15px #10b981;
         }
 
-        /* CARDS */
-
         .card {
+
+            width: 100%;
+
+            overflow: hidden;
 
             background: var(--card);
 
@@ -242,9 +245,9 @@
 
             border-radius: var(--radius-xl);
 
-            padding: 22px;
+            padding: 20px;
 
-            margin-bottom: 18px;
+            margin-bottom: 16px;
 
             backdrop-filter: blur(24px);
 
@@ -280,20 +283,20 @@
 
             gap: 12px;
 
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         .icon-box {
 
-            width: 46px;
-            height: 46px;
+            width: 44px;
+            height: 44px;
 
             border-radius: 16px;
 
             background:
                 linear-gradient(135deg,
-                    rgba(59,130,246,.18),
-                    rgba(139,92,246,.18));
+                    rgba(37,99,235,.18),
+                    rgba(96,165,250,.18));
 
             display: flex;
 
@@ -317,7 +320,7 @@
 
             color: var(--sub);
 
-            font-size: .78rem;
+            font-size: .76rem;
 
             margin-top: 2px;
         }
@@ -335,42 +338,15 @@
             font-weight: 700;
         }
 
-        input,
-        select {
+        .tiny {
 
-            width: 100%;
+            color: var(--sub);
 
-            border: 1px solid transparent;
+            margin-bottom: 6px;
 
-            background: rgba(255,255,255,.05);
-
-            color: white;
-
-            border-radius: 18px;
-
-            padding: 16px;
-
-            outline: none;
-
-            font-size: .95rem;
+            font-size: .72rem;
 
             font-weight: 700;
-
-            transition: .25s ease;
-        }
-
-        select option {
-
-            background: #0f172a;
-        }
-
-        input:focus,
-        select:focus {
-
-            border-color: rgba(59,130,246,.5);
-
-            box-shadow:
-                0 0 0 5px rgba(59,130,246,.12);
         }
 
         .grid {
@@ -386,18 +362,59 @@
 
             grid-template-columns: 1fr 1fr;
 
-            gap: 12px;
+            gap: 10px;
+
+            width: 100%;
         }
 
-        .tiny {
+        .grid-2>div {
 
-            color: var(--sub);
+            min-width: 0;
+        }
 
-            margin-bottom: 6px;
+        input,
+        select {
 
-            font-size: .72rem;
+            width: 100%;
+
+            min-width: 0;
+
+            border: 1px solid transparent;
+
+            background: rgba(255,255,255,.05);
+
+            color: white;
+
+            border-radius: 18px;
+
+            padding: 15px;
+
+            outline: none;
+
+            font-size: .92rem;
 
             font-weight: 700;
+
+            transition: .25s ease;
+        }
+
+        select option {
+
+            background: #0f172a;
+        }
+
+        input:focus,
+        select:focus {
+
+            border-color: rgba(59,130,246,.45);
+
+            box-shadow:
+                0 0 0 5px rgba(59,130,246,.12);
+        }
+
+        .flatpickr-input {
+
+            width: 100% !important;
         }
 
         .hijri-group {
@@ -405,18 +422,22 @@
             display: flex;
 
             gap: 8px;
+
+            width: 100%;
         }
 
         .hijri-group select {
 
             flex: 1;
 
-            padding: 14px 10px;
+            min-width: 0;
 
-            font-size: .82rem;
+            width: 100%;
+
+            padding: 14px 8px;
+
+            font-size: .8rem;
         }
-
-        /* BUTTON */
 
         .btn {
 
@@ -426,40 +447,38 @@
 
             cursor: pointer;
 
-            padding: 18px;
+            padding: 17px;
 
-            border-radius: 24px;
+            border-radius: 22px;
 
-            margin-top: 10px;
+            margin-top: 8px;
 
             color: white;
 
-            font-size: 1rem;
+            font-size: .98rem;
 
             font-weight: 900;
 
             background:
                 linear-gradient(135deg,
                     #2563eb,
-                    #8b5cf6);
+                    #60a5fa);
 
             box-shadow:
-                0 15px 35px rgba(59,130,246,.3);
+                0 15px 35px rgba(37,99,235,.28);
 
             transition: .25s ease;
         }
 
         .btn:hover {
 
-            transform: translateY(-3px);
+            transform: translateY(-2px);
         }
 
         .btn:active {
 
             transform: scale(.98);
         }
-
-        /* INFO BOX */
 
         .info-grid {
 
@@ -469,20 +488,20 @@
 
             gap: 12px;
 
-            margin-top: 18px;
+            margin-top: 16px;
         }
 
         .info-box {
 
             background: rgba(255,255,255,.05);
 
-            border-radius: 24px;
+            border-radius: 22px;
 
             padding: 18px;
 
             text-align: center;
 
-            border: 1px solid rgba(255,255,255,.06);
+            border: 1px solid rgba(255,255,255,.05);
         }
 
         .info-label {
@@ -505,8 +524,6 @@
             font-weight: 900;
         }
 
-        /* RESULT */
-
         .results {
 
             display: grid;
@@ -525,24 +542,17 @@
             border: 1px solid rgba(255,255,255,.06);
 
             text-align: center;
-
-            transition: .3s ease;
-        }
-
-        .result:hover {
-
-            transform: translateY(-4px);
         }
 
         .result.highlight {
 
             background:
                 linear-gradient(135deg,
-                    rgba(16,185,129,.15),
-                    rgba(255,255,255,.04));
+                    rgba(16,185,129,.12),
+                    rgba(255,255,255,.03));
 
             border-color:
-                rgba(16,185,129,.2);
+                rgba(16,185,129,.18);
         }
 
         .main-value {
@@ -551,11 +561,9 @@
 
             margin-top: 6px;
 
-            font-size: 1.45rem;
+            font-size: 1.35rem;
 
             font-weight: 900;
-
-            letter-spacing: -.5px;
         }
 
         .sub-value {
@@ -566,18 +574,16 @@
 
             color: var(--sub);
 
-            font-size: .82rem;
+            font-size: .8rem;
 
             font-weight: 700;
         }
-
-        /* TABLE */
 
         .table-wrap {
 
             overflow: hidden;
 
-            border-radius: 26px;
+            border-radius: 24px;
 
             margin-top: 14px;
 
@@ -597,7 +603,7 @@
 
             text-align: right;
 
-            padding: 15px;
+            padding: 14px;
 
             color: var(--sub);
 
@@ -608,9 +614,9 @@
 
         td {
 
-            padding: 16px 15px;
+            padding: 15px 14px;
 
-            font-size: .85rem;
+            font-size: .82rem;
 
             font-weight: 700;
 
@@ -626,17 +632,15 @@
             font-weight: 900;
         }
 
-        /* FOOTER */
-
         footer {
 
             text-align: center;
 
-            padding: 25px 0 15px;
+            padding: 24px 0 12px;
 
             color: var(--sub);
 
-            font-size: .82rem;
+            font-size: .8rem;
         }
 
         footer b {
@@ -644,15 +648,13 @@
             color: white;
         }
 
-        /* FLATPICKR */
-
         .flatpickr-calendar {
 
             background: #0f172a !important;
 
             border: 1px solid rgba(255,255,255,.08) !important;
 
-            border-radius: 28px !important;
+            border-radius: 26px !important;
 
             overflow: hidden !important;
 
@@ -674,16 +676,6 @@
 
         @media(max-width:500px) {
 
-            body {
-
-                padding: 14px;
-            }
-
-            .card {
-
-                padding: 18px;
-            }
-
             .grid-2 {
 
                 grid-template-columns: 1fr;
@@ -692,6 +684,32 @@
             .info-grid {
 
                 grid-template-columns: 1fr;
+            }
+
+            .topbar-inner {
+
+                padding: 16px;
+            }
+
+            .logo {
+
+                width: 50px;
+                height: 50px;
+            }
+
+            .title h1 {
+
+                font-size: 1.05rem;
+            }
+
+            .title p {
+
+                font-size: .72rem;
+            }
+
+            .main-value {
+
+                font-size: 1.15rem;
             }
         }
     </style>
@@ -720,7 +738,7 @@
                             <h1>مساعد فترات التدريب</h1>
 
                             <p>
-                                تجربة احترافية لحساب التمديدات والتخرج
+                                واجهة ذكية لحساب التمديدات والتخرج
                             </p>
 
                         </div>
@@ -735,7 +753,7 @@
 
         </div>
 
-        <!-- BASE -->
+        <!-- BASIC -->
 
         <div class="card">
 
@@ -781,14 +799,23 @@
 
                 <div>
 
-                    <label>
-                        تاريخ بداية التدريب
-                    </label>
+                    <label>تاريخ بداية التدريب</label>
 
                     <input type="text"
                         id="startDate"
                         readonly
                         placeholder="اضغط لاختيار التاريخ">
+
+                    <div id="startHijriPreview"
+                        style="
+                        margin-top:10px;
+                        color:var(--primary3);
+                        font-size:.82rem;
+                        font-weight:700;
+                        display:none;
+                    ">
+                        -
+                    </div>
 
                 </div>
 
@@ -829,7 +856,7 @@
 
         </div>
 
-        <!-- EXCEPTIONS -->
+        <!-- ADD -->
 
         <div class="card">
 
@@ -973,7 +1000,7 @@
                     </div>
 
                     <div class="card-sub">
-                        جميع النتائج يتم تحديثها مباشرة
+                        تحديث مباشر للنتائج
                     </div>
 
                 </div>
@@ -1018,7 +1045,9 @@
                     <span class="main-value"
                         id="totalExc"
                         style="color:#93c5fd">
+
                         0 يوم
+
                     </span>
 
                 </div>
@@ -1031,12 +1060,16 @@
 
                     <span class="main-value"
                         id="finalStartM">
+
                         -
+
                     </span>
 
                     <span class="sub-value"
                         id="finalStartH">
+
                         -
+
                     </span>
 
                 </div>
@@ -1200,6 +1233,15 @@
             document
                 .getElementById('startH')
                 .innerText = toH(bStart);
+
+            document
+                .getElementById('startHijriPreview')
+                .style.display = 'block';
+
+            document
+                .getElementById('startHijriPreview')
+                .innerText =
+                "هجري: " + toH(bStart);
 
             let baseEnd =
                 moment(bStart)
