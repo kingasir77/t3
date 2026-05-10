@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>مساعد تعديل التدريب </title>
+    <title>مساعد فترات التدريب | ماجد العسيري</title>
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
@@ -14,15 +14,16 @@
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap');
 
         :root {
-            --primary: #2563eb;
-            --secondary: #64748b;
-            --bg-app: #f8fafc;
+            --primary: #4338ca; /* Indigo فخم */
+            --primary-light: #eef2ff;
+            --secondary: #94a3b8;
+            --bg-app: #f1f5f9;
             --card-bg: #ffffff;
             --success: #059669;
-            --danger: #dc2626;
-            --text-main: #0f172a;
-            --radius-lg: 16px;
-            --radius-md: 10px;
+            --danger: #e11d48;
+            --text-dark: #1e293b;
+            --radius-xl: 24px;
+            --radius-md: 14px;
         }
 
         * { 
@@ -33,96 +34,116 @@
 
         body {
             background-color: var(--bg-app);
-            color: var(--text-main);
-            padding: 10px;
-            line-height: 1.4;
+            color: var(--text-dark);
+            padding: 20px 15px;
+            line-height: 1.6;
             user-select: none;
         }
 
-        .container { max-width: 450px; margin: 0 auto; width: 100%; }
+        .container { max-width: 480px; margin: 0 auto; width: 100%; }
 
-        header { text-align: center; margin: 15px 0; }
-        header h1 { font-weight: 800; font-size: 1.4rem; color: var(--primary); }
+        header { text-align: center; margin-bottom: 25px; }
+        header h1 { font-weight: 900; font-size: 1.6rem; color: var(--primary); letter-spacing: -0.5px; }
 
         .section-card {
             background: var(--card-bg);
-            border-radius: var(--radius-lg);
-            padding: 15px;
-            margin-bottom: 12px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            border: 1px solid #e2e8f0;
+            border-radius: var(--radius-xl);
+            padding: 24px;
+            margin-bottom: 18px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.04);
+            border: 1px solid rgba(255,255,255,0.8);
         }
 
-        .unit-header { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
-        .unit-title { font-weight: 800; font-size: 0.95rem; }
+        .unit-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+        .unit-title { font-weight: 800; font-size: 1.05rem; color: var(--text-dark); }
+        .unit-icon { background: var(--primary-light); width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; border-radius: 10px; font-size: 1.1rem; }
 
-        label { display: block; margin-bottom: 4px; font-weight: 700; font-size: 0.75rem; color: var(--secondary); }
-        .tiny-label { font-size: 0.65rem; color: var(--secondary); margin-bottom: 2px; font-weight: 600; }
+        label { display: block; margin-bottom: 6px; font-weight: 700; font-size: 0.85rem; color: var(--secondary); margin-right: 4px; }
+        .tiny-label { font-size: 0.7rem; color: var(--secondary); margin-bottom: 4px; font-weight: 700; display: block; }
 
         input, select {
             width: 100%;
-            padding: 10px;
-            border: 1.5px solid #e2e8f0;
-            background-color: #fff;
+            padding: 14px;
+            border: 2px solid #f1f5f9;
+            background-color: #f8fafc;
             border-radius: var(--radius-md);
-            font-size: 0.9rem;
-            color: var(--text-main);
-            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            font-weight: 700;
+            transition: all 0.2s ease;
         }
+
+        input:focus { border-color: var(--primary); background-color: #fff; outline: none; }
 
         .btn-action {
             background: var(--primary);
             color: white; border: none;
-            padding: 12px; border-radius: var(--radius-md);
+            padding: 16px; border-radius: var(--radius-md);
             font-weight: 800; cursor: pointer;
-            width: 100%; margin-top: 10px;
-            font-size: 0.95rem;
+            width: 100%; margin-top: 15px;
+            font-size: 1rem;
+            box-shadow: 0 4px 12px rgba(67, 56, 202, 0.2);
         }
 
-        .date-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-        .hijri-group { display: flex; gap: 4px; width: 100%; }
-        .hijri-group select { flex: 1; min-width: 0; padding: 8px 2px; font-size: 0.8rem; }
+        .btn-action:active { transform: scale(0.98); }
 
+        .date-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .hijri-group { display: flex; gap: 6px; width: 100%; margin-bottom: 12px; }
+        .hijri-group select { flex: 1; min-width: 0; padding: 12px 2px; font-size: 0.85rem; }
+
+        /* منطقة عرض التواريخ الأساسية */
         .info-display {
-            background: #f1f5f9;
-            padding: 10px;
+            background: var(--primary-light);
+            padding: 15px;
             border-radius: var(--radius-md);
-            margin-top: 10px;
+            margin-top: 15px;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 6px;
+            gap: 10px;
         }
 
-        .info-item { text-align: center; padding: 6px; background: white; border-radius: 6px; }
-        .info-label { font-size: 0.65rem; color: var(--secondary); font-weight: 700; display: block; }
-        .info-value { font-weight: 800; font-size: 0.8rem; }
+        .info-item { text-align: center; padding: 10px; background: white; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+        .info-label { font-size: 0.7rem; color: var(--secondary); font-weight: 700; display: block; margin-bottom: 2px; }
+        .info-value { font-weight: 800; font-size: 0.9rem; color: var(--primary); }
 
-        .results-grid { display: grid; gap: 8px; margin-top: 12px; }
+        /* منطقة النتائج النهائية */
+        .results-grid { display: grid; gap: 12px; margin-top: 15px; }
         .result-box {
             background: #fff;
-            padding: 12px;
+            padding: 18px;
             border-radius: var(--radius-md);
             text-align: center;
-            border: 1px solid #e2e8f0;
+            border: 1px solid #f1f5f9;
         }
-        .result-box.highlight { background: #ecfdf5; border: 1.5px solid var(--success); }
-        .val-main { display: block; font-size: 1.1rem; font-weight: 900; color: var(--primary); }
-        .val-sub { font-size: 0.8rem; font-weight: 600; color: var(--secondary); }
+        .result-box.highlight { 
+            background: var(--primary); 
+            color: white;
+            border: none;
+            box-shadow: 0 10px 20px -5px rgba(67, 56, 202, 0.3);
+        }
+        .result-box.highlight .info-label { color: rgba(255,255,255,0.7); }
+        .result-box.highlight .val-main { color: white; }
+        .result-box.highlight .val-sub { color: rgba(255,255,255,0.9); }
 
-        .table-container { width: 100%; overflow-x: hidden; margin-top: 10px; }
+        .val-main { display: block; font-size: 1.3rem; font-weight: 900; color: var(--primary); margin: 4px 0; }
+        .val-sub { font-size: 0.9rem; font-weight: 600; color: var(--secondary); }
+
+        /* الجدول المتجاوب */
+        .table-container { width: 100%; margin-top: 15px; border-radius: 12px; overflow: hidden; border: 1px solid #f1f5f9; }
         table { width: 100%; border-collapse: collapse; }
-        th { font-size: 0.7rem; color: var(--secondary); padding: 6px; text-align: right; border-bottom: 1px solid #f1f5f9; }
-        td { padding: 8px 6px; font-size: 0.8rem; border-bottom: 1px solid #f1f5f9; }
+        th { background: #f8fafc; font-size: 0.75rem; color: var(--secondary); padding: 10px; text-align: right; }
+        td { padding: 12px 10px; font-size: 0.85rem; border-bottom: 1px solid #f1f5f9; background: white; font-weight: 700; }
+        .delete-btn { color: var(--danger); font-weight: 800; cursor: pointer; padding: 4px 8px; background: #fff1f2; border-radius: 6px; }
 
         footer {
             text-align: center;
-            margin-top: 25px;
-            padding: 15px;
-            border-top: 1px solid #e2e8f0;
+            margin-top: 40px;
+            padding: 25px;
             color: var(--secondary);
-            font-size: 0.8rem;
+            font-size: 0.9rem;
+            border-top: 1px solid #e2e8f0;
         }
-        footer b { color: var(--text-main); }
+        footer b { color: var(--text-dark); font-weight: 800; }
     </style>
 </head>
 
@@ -135,11 +156,12 @@
 
         <div class="section-card">
             <div class="unit-header">
-                <span class="unit-title">📅 البيانات الأساسية</span>
+                <div class="unit-icon">📅</div>
+                <span class="unit-title">البيانات الأساسية</span>
             </div>
-            <div style="display: grid; gap: 10px;">
+            <div style="display: grid; gap: 15px;">
                 <div>
-                    <label>المدة المقررة</label>
+                    <label>المدة المقررة للتدريب</label>
                     <select id="level" onchange="calculate()">
                         <option value="18">18 شهر (المستوى الخامس)</option>
                         <option value="24">24 شهر (المستوى السابع)</option>
@@ -153,43 +175,41 @@
 
             <div id="baseInfoBox" style="display:none;" class="info-display">
                 <div class="info-item">
-                    <span class="info-label">البداية (هجري)</span>
+                    <span class="info-label">بداية (هجري)</span>
                     <span id="startH" class="info-value">-</span>
                 </div>
                 <div class="info-item">
-                    <span class="info-label">النهاية الافتراضية</span>
-                    <span id="endM_base" class="info-value" style="color:var(--primary)">-</span>
+                    <span class="info-label">نهاية افتراضية</span>
+                    <span id="endM_base" class="info-value">-</span>
                 </div>
             </div>
         </div>
 
         <div class="section-card">
             <div class="unit-header">
-                <span class="unit-title">➕ إضافة تعديل</span>
+                <div class="unit-icon">➕</div>
+                <span class="unit-title">إضافة تمديد / تعديل</span>
             </div>
-            <div style="display: grid; gap: 8px;">
+            <div style="display: grid; gap: 12px;">
                 <div class="date-grid">
                     <div>
-                        <div class="tiny-label">من (ميلادي)</div>
+                        <span class="tiny-label">من (ميلادي)</span>
                         <input type="text" id="excStartM" placeholder="اختر" readonly>
                     </div>
                     <div>
-                        <div class="tiny-label">إلى (ميلادي)</div>
+                        <span class="tiny-label">إلى (ميلادي)</span>
                         <input type="text" id="excEndM" placeholder="اختر" readonly>
                     </div>
                 </div>
 
-                <div style="margin-top: 5px;">
-                    <div class="tiny-label">من (هجري)</div>
+                <div style="margin-top: 10px;">
+                    <span class="tiny-label">أو اختر بالتاريخ الهجري (من):</span>
                     <div class="hijri-group">
                         <select id="hDayS"><option value="">يوم</option></select>
                         <select id="hMonthS"><option value="">شهر</option></select>
                         <select id="hYearS"><option value="">سنة</option></select>
                     </div>
-                </div>
-
-                <div>
-                    <div class="tiny-label">إلى (هجري)</div>
+                    <span class="tiny-label">إلى (هجري):</span>
                     <div class="hijri-group">
                         <select id="hDayE"><option value="">يوم</option></select>
                         <select id="hMonthE"><option value="">شهر</option></select>
@@ -197,23 +217,24 @@
                     </div>
                 </div>
 
-                <div style="margin-top: 5px;">
-                    <label>أو عدد أيام التمديد مباشرة</label>
+                <div style="margin-top: 5px; border-top: 1px solid #f1f5f9; padding-top: 15px;">
+                    <label>أو إضافة تمديد بالأيام مباشرة</label>
                     <input type="number" id="excDays" placeholder="مثال: 15" pattern="\d*">
                 </div>
 
-                <button class="btn-action" onclick="addException()">إضافة للجدول</button>
+                <button class="btn-action" onclick="addException()">إضافة إلى الجدول</button>
             </div>
         </div>
 
         <div class="section-card">
             <div class="unit-header">
-                <span class="unit-title">📊 النتائج النهائية</span>
+                <div class="unit-icon">📊</div>
+                <span class="unit-title">النتائج النهائية</span>
             </div>
             
             <div class="table-container" id="tableContainer" style="display: none;">
                 <table id="excTable">
-                    <thead><tr><th>الفترة</th><th>الأيام</th><th></th></tr></thead>
+                    <thead><tr><th>فترة التمديد</th><th>الأيام</th><th>إجراء</th></tr></thead>
                     <tbody></tbody>
                 </table>
             </div>
@@ -224,21 +245,21 @@
                     <span class="val-main" id="totalExc">0 يوم</span>
                 </div>
                 <div class="result-box">
-                    <span class="info-label">تاريخ البداية الجديد</span>
-                    <span class="val-main" id="finalStartM" style="font-size: 0.95rem;">-</span>
+                    <span class="info-label">تاريخ البداية (بعد التعديل)</span>
+                    <span class="val-main" id="finalStartM" style="font-size: 1.1rem;">-</span>
                     <span class="val-sub" id="finalStartH">-</span>
                 </div>
                 <div class="result-box highlight">
-                    <span class="info-label" style="color:var(--success)">موعد التخرج المتوقع</span>
-                    <span class="val-main" id="finalEndM" style="color:var(--success)">-</span>
+                    <span class="info-label">موعد التخرج النهائي المتوقع</span>
+                    <span class="val-main" id="finalEndM">-</span>
                     <span class="val-sub" id="finalEndH">-</span>
                 </div>
             </div>
         </div>
 
         <footer>
-            نظام مساعد تعديل  التدريب <br>
-            برمجة وتطوير: <b>ماجد العسيري</b>
+            نظام مساعد فترات التدريب الذكي<br>
+            تصميم وتطوير: <b>ماجد العسيري</b>
         </footer>
     </div>
 
@@ -274,7 +295,7 @@
         }
 
         function addException() {
-            if (!bStart) return alert("حدد تاريخ المباشرة أولاً");
+            if (!bStart) return alert("يرجى اختيار تاريخ البداية أولاً");
             let start, end;
             const dInp = document.getElementById('excDays').value;
             const hS = { d: document.getElementById('hDayS').value, m: document.getElementById('hMonthS').value, y: document.getElementById('hYearS').value };
@@ -291,7 +312,7 @@
                 end = moment(start).add(parseInt(dInp)-1, 'days');
             }
 
-            if (!start || !end || !start.isValid()) return alert("يرجى إدخال التواريخ بشكل صحيح");
+            if (!start || !end || !start.isValid()) return alert("تحقق من إدخال التواريخ بشكل صحيح");
 
             let total = end.diff(start, 'days') + 1;
             exceptions.push({ range: start.format('DD/MM') + " - " + end.format('DD/MM'), days: total });
@@ -308,7 +329,7 @@
             
             exceptions.forEach((ex, i) => {
                 totalDays += ex.days;
-                tb.innerHTML += `<tr><td>${ex.range}</td><td>${ex.days} ي</td><td><span style="color:var(--danger); font-weight:800;" onclick="remove(${i})">حذف</span></td></tr>`;
+                tb.innerHTML += `<tr><td>${ex.range}</td><td>${ex.days} ي</td><td><span class="delete-btn" onclick="remove(${i})">حذف</span></td></tr>`;
             });
 
             document.getElementById('totalExc').innerText = totalDays + " يوم";
