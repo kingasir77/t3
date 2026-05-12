@@ -4,10 +4,14 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
     <title>مساعد تعديل التدريب</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
     <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
@@ -22,27 +26,44 @@
         }
 
         :root {
+
             --bg:
-                radial-gradient(circle at top right, rgba(59, 130, 246, 0.15), transparent 30%),
-                radial-gradient(circle at bottom left, rgba(14, 165, 233, 0.12), transparent 25%),
-                linear-gradient(135deg, #0b1220 0%, #111827 50%, #172554 100%);
+                radial-gradient(circle at top right, rgba(96, 165, 250, 0.25), transparent 25%),
+                radial-gradient(circle at bottom left, rgba(59, 130, 246, 0.20), transparent 20%),
+                linear-gradient(135deg, #eaf3ff 0%, #dcecff 35%, #c9e0ff 100%);
 
-            --card: rgba(15, 23, 42, 0.72);
-            --stroke: rgba(255, 255, 255, 0.08);
+            --card:
+                rgba(255, 255, 255, 0.62);
 
-            --primary: #3b82f6;
-            --primary-light: #60a5fa;
+            --card-strong:
+                rgba(255, 255, 255, 0.82);
 
-            --success: #10b981;
+            --stroke:
+                rgba(255, 255, 255, 0.75);
 
-            --text: #f8fafc;
-            --sub: #94a3b8;
+            --primary:
+                #2563eb;
 
-            --radius-xl: 26px;
+            --primary-light:
+                #60a5fa;
+
+            --dark:
+                #0f172a;
+
+            --sub:
+                #64748b;
+
+            --success:
+                #10b981;
+
+            --danger:
+                #ef4444;
+
+            --radius-xl: 34px;
 
             --shadow:
-                0 10px 40px rgba(0, 0, 0, 0.25),
-                0 0 0 1px rgba(255, 255, 255, 0.03);
+                0 10px 40px rgba(37, 99, 235, 0.12);
+
         }
 
         html {
@@ -50,93 +71,201 @@
         }
 
         body {
+
             font-family: 'Cairo', sans-serif;
+
             min-height: 100vh;
+
             background: var(--bg);
+
             background-attachment: fixed;
-            color: var(--text);
-            padding: 16px;
-            line-height: 1.5;
+
+            padding: 18px;
+
+            color: var(--dark);
+
             overflow-x: hidden;
         }
 
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            width: 450px;
+            height: 450px;
+
+            background:
+                radial-gradient(circle,
+                    rgba(96, 165, 250, 0.35),
+                    transparent 70%);
+
+            top: -150px;
+            right: -100px;
+
+            z-index: -1;
+
+            filter: blur(30px);
+        }
+
+        body::after {
+
+            content: "";
+
+            position: fixed;
+
+            width: 400px;
+            height: 400px;
+
+            background:
+                radial-gradient(circle,
+                    rgba(59, 130, 246, 0.18),
+                    transparent 70%);
+
+            bottom: -180px;
+            left: -120px;
+
+            z-index: -1;
+
+            filter: blur(40px);
+        }
+
         .container {
-            max-width: 520px;
+            max-width: 540px;
             margin: auto;
         }
 
-        .topbar-inner {
+        .hero {
+
             position: relative;
+
             overflow: hidden;
 
-            backdrop-filter: blur(22px);
-            -webkit-backdrop-filter: blur(22px);
+            padding: 26px;
 
-            background: rgba(15, 23, 42, 0.65);
+            border-radius: 38px;
 
-            border: 1px solid var(--stroke);
-            border-radius: 24px;
+            margin-bottom: 18px;
 
-            padding: 18px;
-            margin-bottom: 20px;
+            background:
+                linear-gradient(145deg,
+                    rgba(255, 255, 255, 0.75),
+                    rgba(255, 255, 255, 0.55));
+
+            border: 1px solid rgba(255, 255, 255, 0.9);
+
+            backdrop-filter: blur(24px);
 
             box-shadow: var(--shadow);
         }
 
-        .topbar-inner::before {
+        .hero::before {
+
             content: "";
+
             position: absolute;
-            inset: 0;
-            background: linear-gradient(120deg,
-                    transparent,
-                    rgba(255, 255, 255, 0.04),
-                    transparent);
-            pointer-events: none;
+
+            width: 220px;
+            height: 220px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(circle,
+                    rgba(37, 99, 235, 0.22),
+                    transparent 70%);
+
+            top: -80px;
+            left: -70px;
         }
 
-        .app-mini {
+        .hero-top {
+
             display: flex;
+
             align-items: center;
+
             justify-content: space-between;
-        }
 
-        .app-left {
-            display: flex;
-            align-items: center;
-            gap: 14px;
+            margin-bottom: 26px;
         }
 
         .logo {
-            width: 48px;
-            height: 48px;
-            border-radius: 16px;
+
+            width: 62px;
+            height: 62px;
+
+            border-radius: 22px;
 
             background:
-                linear-gradient(135deg,
+                linear-gradient(145deg,
                     #2563eb,
-                    #38bdf8);
+                    #60a5fa);
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
 
-            font-size: 20px;
+            color: white;
+
+            font-size: 24px;
+
             box-shadow:
-                0 10px 25px rgba(59, 130, 246, 0.35);
+                0 15px 35px rgba(37, 99, 235, 0.35);
         }
 
-        .title h1 {
-            font-size: 1rem;
+        .notif {
+
+            width: 48px;
+            height: 48px;
+
+            border-radius: 18px;
+
+            background:
+                rgba(255, 255, 255, 0.65);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: var(--primary);
+
+            font-size: 18px;
+
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .hero h1 {
+
+            font-size: 1.9rem;
+
+            line-height: 1.3;
+
+            margin-bottom: 10px;
+
             font-weight: 900;
-            margin-bottom: 2px;
         }
 
-        .title span {
-            font-size: 0.75rem;
+        .hero p {
+
             color: var(--sub);
+
+            font-size: 0.92rem;
+
+            line-height: 1.8;
         }
 
-        .card {
+        .glass-card {
+
+            position: relative;
+
+            overflow: hidden;
+
             background: var(--card);
 
             border: 1px solid var(--stroke);
@@ -145,49 +274,133 @@
 
             padding: 22px;
 
-            margin-bottom: 16px;
+            margin-bottom: 18px;
+
+            backdrop-filter: blur(25px);
 
             box-shadow: var(--shadow);
+        }
 
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
+        .glass-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                linear-gradient(135deg,
+                    rgba(255, 255, 255, 0.35),
+                    transparent 35%);
+
+            pointer-events: none;
+        }
+
+        .section-title {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin-bottom: 20px;
+        }
+
+        .section-icon {
+
+            width: 46px;
+            height: 46px;
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(145deg,
+                    #2563eb,
+                    #60a5fa);
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 18px;
+
+            box-shadow:
+                0 12px 25px rgba(37, 99, 235, 0.25);
+        }
+
+        .section-title h2 {
+
+            font-size: 1rem;
+
+            font-weight: 900;
+
+            margin-bottom: 2px;
+        }
+
+        .section-title span {
+
+            font-size: 0.78rem;
+
+            color: var(--sub);
         }
 
         .grid {
+
             display: flex;
+
             flex-direction: column;
-            gap: 16px;
+
+            gap: 18px;
         }
 
         .row-inputs {
+
             display: grid;
+
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
+
+            gap: 14px;
         }
 
         label,
         .tiny {
+
             display: block;
-            margin-bottom: 7px;
+
+            margin-bottom: 9px;
+
+            font-size: 0.78rem;
+
             color: var(--sub);
-            font-size: 0.76rem;
+
             font-weight: 800;
         }
 
         input,
         select {
+
             width: 100%;
-            background: rgba(255, 255, 255, 0.04);
 
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.95);
 
-            border-radius: 14px;
+            background:
+                rgba(255, 255, 255, 0.72);
 
-            padding: 13px 14px;
+            border-radius: 20px;
 
-            color: white;
+            padding: 16px 18px;
 
             font-family: inherit;
+
+            font-size: 0.92rem;
+
+            color: var(--dark);
 
             outline: none;
 
@@ -196,8 +409,13 @@
 
         input:focus,
         select:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12);
+
+            border-color: rgba(37, 99, 235, 0.35);
+
+            box-shadow:
+                0 0 0 5px rgba(59, 130, 246, 0.12);
+
+            transform: translateY(-1px);
         }
 
         option {
@@ -205,182 +423,273 @@
         }
 
         .hijri-group {
+
             display: flex;
-            gap: 6px;
+
+            gap: 10px;
         }
 
         .btn {
+
             position: relative;
+
             overflow: hidden;
-
-            background:
-                linear-gradient(135deg,
-                    #2563eb,
-                    #38bdf8);
-
-            color: white;
 
             border: none;
 
-            border-radius: 16px;
+            border-radius: 24px;
 
-            padding: 15px;
-
-            font-weight: 900;
+            padding: 18px;
 
             width: 100%;
 
             cursor: pointer;
 
-            transition: 0.25s;
+            font-family: inherit;
 
-            font-size: 0.95rem;
+            font-size: 0.96rem;
+
+            font-weight: 900;
+
+            color: white;
+
+            background:
+                linear-gradient(145deg,
+                    #2563eb,
+                    #60a5fa);
 
             box-shadow:
-                0 10px 30px rgba(37, 99, 235, 0.35);
+                0 18px 35px rgba(37, 99, 235, 0.28);
+
+            transition: 0.25s;
+        }
+
+        .btn::before {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                linear-gradient(120deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.25),
+                    transparent);
+
+            transform: translateX(-100%);
+        }
+
+        .btn:hover::before {
+            transform: translateX(100%);
+            transition: 0.8s;
         }
 
         .btn:hover {
             transform: translateY(-2px);
         }
 
-        .btn:active {
-            transform: scale(0.985);
-        }
-
         .info-grid {
+
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 10px;
-            margin-top: 16px;
+
+            gap: 14px;
+
+            margin-top: 20px;
         }
 
         .info-box {
-            background: rgba(255, 255, 255, 0.03);
 
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background:
+                rgba(255, 255, 255, 0.6);
 
-            padding: 14px;
+            border-radius: 26px;
 
-            border-radius: 18px;
+            padding: 18px;
 
-            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.9);
         }
 
         .info-label {
-            font-size: 0.72rem;
-            color: var(--sub);
+
             display: block;
-            margin-bottom: 4px;
-            font-weight: 700;
+
+            font-size: 0.74rem;
+
+            color: var(--sub);
+
+            margin-bottom: 8px;
+
+            font-weight: 800;
         }
 
         .info-value {
-            font-size: 0.9rem;
-            font-weight: 800;
-            color: #fff;
-            display: block;
+
+            font-size: 1rem;
+
+            font-weight: 900;
         }
 
         .result {
-            background: rgba(255, 255, 255, 0.04);
 
-            border-radius: 20px;
+            background:
+                rgba(255, 255, 255, 0.62);
 
-            padding: 20px;
+            border-radius: 30px;
+
+            padding: 24px;
 
             text-align: center;
 
-            margin-bottom: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.9);
 
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .highlight {
-            border: 1px solid rgba(16, 185, 129, 0.25);
-            background: rgba(16, 185, 129, 0.08);
-        }
-
-        .new-start-box {
-            border: 1px solid rgba(96, 165, 250, 0.3);
-            background: rgba(59, 130, 246, 0.08);
+            margin-bottom: 16px;
         }
 
         .main-value {
-            font-size: 1.18rem;
-            font-weight: 900;
+
             display: block;
-            margin-top: 4px;
+
+            font-size: 1.35rem;
+
+            font-weight: 900;
+
+            margin-top: 6px;
         }
 
         .sub-value {
-            font-size: 0.8rem;
-            color: var(--sub);
+
             display: block;
-            margin-top: 3px;
+
+            color: var(--sub);
+
+            margin-top: 6px;
+
+            font-size: 0.84rem;
+        }
+
+        .new-start-box {
+
+            background:
+                linear-gradient(145deg,
+                    rgba(96, 165, 250, 0.16),
+                    rgba(255, 255, 255, 0.75));
+
+            border: 1px solid rgba(96, 165, 250, 0.22);
+        }
+
+        .highlight {
+
+            background:
+                linear-gradient(145deg,
+                    rgba(16, 185, 129, 0.10),
+                    rgba(255, 255, 255, 0.75));
+
+            border: 1px solid rgba(16, 185, 129, 0.2);
         }
 
         table {
+
             width: 100%;
+
             border-collapse: collapse;
         }
 
         th {
+
             color: var(--sub);
-            font-size: 0.75rem;
-            padding-bottom: 10px;
+
+            font-size: 0.74rem;
+
+            padding-bottom: 12px;
+
             text-align: right;
         }
 
         td {
-            padding: 14px 0;
-            border-top: 1px solid var(--stroke);
-            font-size: 0.8rem;
+
+            padding: 18px 0;
+
+            border-top: 1px solid rgba(148, 163, 184, 0.15);
+
             vertical-align: middle;
+
+            font-size: 0.84rem;
         }
 
         .exc-range {
+
             display: block;
-            font-weight: 700;
-            color: #dbeafe;
+
+            font-weight: 800;
+
+            color: var(--dark);
+
+            margin-bottom: 4px;
         }
 
         .exc-days {
-            color: var(--primary-light);
+
             font-weight: 900;
+
+            color: var(--primary);
         }
 
         .badge-out {
-            color: #f87171;
+
             font-size: 0.68rem;
-            font-weight: bold;
+
+            color: var(--danger);
+
+            font-weight: 800;
         }
 
         .trash-btn {
-            color: #f87171;
+
+            color: var(--danger);
+
             cursor: pointer;
+
             transition: 0.2s;
         }
 
         .trash-btn:hover {
-            transform: scale(1.15);
+            transform: scale(1.18);
         }
 
         footer {
+
             text-align: center;
+
+            padding: 26px 0 14px;
+
             color: var(--sub);
-            font-size: 0.75rem;
-            padding: 24px 0 10px;
-            opacity: 0.75;
+
+            font-size: 0.78rem;
+        }
+
+        footer b {
+
+            color: var(--primary);
         }
 
         @media(max-width: 520px) {
+
             .row-inputs {
                 grid-template-columns: 1fr;
             }
 
             .hijri-group {
                 flex-direction: column;
+            }
+
+            .hero h1 {
+                font-size: 1.55rem;
+            }
+
+            .glass-card {
+                padding: 18px;
             }
         }
     </style>
@@ -390,24 +699,46 @@
 
     <div class="container">
 
-        <div class="topbar-inner">
-            <div class="app-mini">
+        <div class="hero">
 
-                <div class="app-left">
-                    <div class="logo">
-                        <i class="fa-solid fa-graduation-cap"></i>
-                    </div>
+            <div class="hero-top">
 
-                    <div class="title">
-                        <h1>مساعد تعديل التدريب</h1>
-                        <span>حساب التمديد والتاريخ الجديد تلقائياً</span>
-                    </div>
+                <div class="logo">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+
+                <div class="notif">
+                    <i class="fa-solid fa-bell"></i>
                 </div>
 
             </div>
+
+            <h1>
+                إدارة تعديل التدريب<br>
+                بشكل ذكي واحترافي
+            </h1>
+
+            <p>
+                احسب التمديدات والتعديلات وتاريخ النهاية الجديد
+                بتجربة عصرية وتصميم حديث.
+            </p>
+
         </div>
 
-        <div class="card">
+        <div class="glass-card">
+
+            <div class="section-title">
+
+                <div class="section-icon">
+                    <i class="fa-solid fa-calendar-days"></i>
+                </div>
+
+                <div>
+                    <h2>بيانات التدريب</h2>
+                    <span>تحديد المدة وتاريخ البداية</span>
+                </div>
+
+            </div>
 
             <div class="grid">
 
@@ -434,23 +765,31 @@
                     <span id="startH" class="info-value">-</span>
                 </div>
 
-                <div class="info-box" style="border-color: rgba(59, 130, 246, 0.25);">
+                <div class="info-box">
                     <span class="info-label">نهاية التدريب الافتراضية</span>
-                    <span id="endM_base" class="info-value" style="color:#60a5fa">-</span>
-                    <span id="endH_base" class="info-value"
-                        style="color:#94a3b8; font-size: 0.75rem; margin-top: 4px;">-</span>
+                    <span id="endM_base" class="info-value" style="color:#2563eb">-</span>
+
+                    <span id="endH_base" class="sub-value">-</span>
                 </div>
 
             </div>
 
         </div>
 
-        <div class="card">
+        <div class="glass-card">
 
-            <label style="color:white; margin-bottom:15px; display:flex; align-items:center; gap:8px;">
-                <i class="fa-solid fa-plus-circle" style="color: var(--primary);"></i>
-                إضافة تعديل أو تمديد
-            </label>
+            <div class="section-title">
+
+                <div class="section-icon">
+                    <i class="fa-solid fa-plus"></i>
+                </div>
+
+                <div>
+                    <h2>إضافة تمديد أو تعديل</h2>
+                    <span>أدخل الفترات أو عدد الأيام</span>
+                </div>
+
+            </div>
 
             <div class="grid">
 
@@ -472,6 +811,7 @@
                     <span class="tiny">من (هجري)</span>
 
                     <div class="hijri-group">
+
                         <select id="hDayS">
                             <option value="">يوم</option>
                         </select>
@@ -483,13 +823,16 @@
                         <select id="hYearS">
                             <option value="">سنة</option>
                         </select>
+
                     </div>
                 </div>
 
                 <div>
+
                     <span class="tiny">إلى (هجري)</span>
 
                     <div class="hijri-group">
+
                         <select id="hDayE">
                             <option value="">يوم</option>
                         </select>
@@ -501,7 +844,9 @@
                         <select id="hYearE">
                             <option value="">سنة</option>
                         </select>
+
                     </div>
+
                 </div>
 
                 <div>
@@ -510,68 +855,103 @@
                 </div>
 
                 <button class="btn" onclick="addException()">
+
                     <i class="fa-solid fa-plus"></i>
                     إضافة للجدول
+
                 </button>
 
             </div>
 
         </div>
 
-        <div class="card">
+        <div class="glass-card">
 
             <div id="tableContainer" style="display:none; margin-bottom:20px;">
 
                 <table>
+
                     <thead>
+
                         <tr>
-                            <th>تفاصيل فترة التمديد</th>
-                            <th style="text-align:center;">الأيام</th>
-                            <th style="text-align:left;">إجراء</th>
+
+                            <th>تفاصيل الفترة</th>
+
+                            <th style="text-align:center;">
+                                الأيام
+                            </th>
+
+                            <th style="text-align:left;">
+                                حذف
+                            </th>
+
                         </tr>
+
                     </thead>
 
                     <tbody id="excTableBody"></tbody>
+
                 </table>
 
             </div>
 
             <div class="result">
-                <span class="info-label">إجمالي التعديل المعتمد</span>
-                <span class="main-value" id="totalExc" style="color:var(--primary)">0 يوم</span>
-            </div>
 
-            <!-- الجديد -->
-            <div class="result new-start-box">
-                <span class="info-label" style="color:#60a5fa">
-                    تاريخ بداية التدريب الجديد بعد التعديل
+                <span class="info-label">
+                    إجمالي التعديل المعتمد
                 </span>
 
-                <span class="main-value" id="newStartM" style="color:#60a5fa">-</span>
+                <span class="main-value" id="totalExc" style="color:#2563eb">
+                    0 يوم
+                </span>
 
-                <span class="sub-value" id="newStartH">-</span>
+            </div>
+
+            <div class="result new-start-box">
+
+                <span class="info-label" style="color:#2563eb">
+                    تاريخ بداية التدريب الجديد
+                </span>
+
+                <span class="main-value" id="newStartM" style="color:#2563eb">
+                    -
+                </span>
+
+                <span class="sub-value" id="newStartH">
+                    -
+                </span>
+
             </div>
 
             <div class="result highlight">
+
                 <span class="info-label" style="color:#10b981">
                     تاريخ نهاية التدريب النهائي
                 </span>
 
-                <span class="main-value" id="finalEndM" style="color:#10b981">-</span>
+                <span class="main-value" id="finalEndM" style="color:#10b981">
+                    -
+                </span>
 
-                <span class="sub-value" id="finalEndH">-</span>
+                <span class="sub-value" id="finalEndH">
+                    -
+                </span>
+
             </div>
 
         </div>
 
         <footer>
+
             برمجة وتطوير:
-            <b style="color:#e2e8f0">ماجد العسيري</b>
+            <b>ماجد العسيري</b>
+
         </footer>
 
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ar.js"></script>
 
     <script>
@@ -599,24 +979,34 @@
             const currYear = parseInt(moment().format('iYYYY'));
 
             ['hDayS', 'hDayE'].forEach(id => {
+
                 for (let i = 1; i <= 30; i++) {
+
                     document.getElementById(id).innerHTML +=
                         `<option value="${i}">${i}</option>`;
                 }
+
             });
 
             ['hMonthS', 'hMonthE'].forEach(id => {
+
                 months.forEach((m, i) => {
+
                     document.getElementById(id).innerHTML +=
                         `<option value="${i+1}">${m}</option>`;
+
                 });
+
             });
 
             ['hYearS', 'hYearE'].forEach(id => {
+
                 for (let i = currYear - 2; i <= currYear + 5; i++) {
+
                     document.getElementById(id).innerHTML +=
                         `<option value="${i}">${i}</option>`;
                 }
+
             });
 
         }
@@ -683,6 +1073,7 @@
                 let effective = 0;
 
                 if (intersectEnd.isSameOrAfter(intersectStart)) {
+
                     effective =
                         intersectEnd.diff(intersectStart, 'days') + 1;
                 }
@@ -690,9 +1081,11 @@
                 totalDays += effective;
 
                 tb.innerHTML += `
+
                 <tr>
 
                     <td>
+
                         <span class="exc-range">
                             من: ${ex.start.format('YYYY-MM-DD')}
                         </span>
@@ -700,9 +1093,11 @@
                         <span class="exc-range">
                             إلى: ${ex.end.format('YYYY-MM-DD')}
                         </span>
+
                     </td>
 
                     <td style="text-align:center;">
+
                         <span class="exc-days">
                             ${effective} يوم
                         </span>
@@ -711,14 +1106,18 @@
                         ? '<br><span class="badge-out">خارج النطاق</span>'
                         : ''
                     }
+
                     </td>
 
                     <td style="text-align:left;">
+
                         <i class="fa-solid fa-trash-can trash-btn"
                            onclick="removeExc(${i})"></i>
+
                     </td>
 
                 </tr>`;
+
             });
 
             document.getElementById('tableContainer').style.display =
@@ -727,7 +1126,6 @@
             document.getElementById('totalExc').innerText =
                 totalDays + " يوم";
 
-            /* تاريخ البداية الجديد */
             let newStart =
                 bStart.clone().add(totalDays, 'days');
 
@@ -737,7 +1135,6 @@
             document.getElementById('newStartH').innerText =
                 toH(newStart.toDate());
 
-            /* النهاية النهائية */
             let finalEnd =
                 baseEnd.clone().add(totalDays, 'days');
 
